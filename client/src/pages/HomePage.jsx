@@ -7,6 +7,8 @@ import Vrh from "../components/home/Vrh";
 import VrhMobile from "../components/home/VrhMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
+import FooterDesktop from "../components/common/FooterDesktop";
+import FooterMobile from "../components/common/FooterMobile";
 
 export class HomePage extends Component {
     render() {
@@ -23,11 +25,18 @@ export class HomePage extends Component {
                         <VrhMobile />
                     </div>
 
-                    <Vrh />
                     <Novo />
                     <Izdvojeno />
                     <Kategorije />
                     <Kolekcija />
+
+                    <div className="Desktop">
+                        <FooterDesktop />
+                    </div>
+
+                    <div className="Mobile">
+                        <FooterMobile />
+                    </div>
                 </Fragment>
             </div>
         );
