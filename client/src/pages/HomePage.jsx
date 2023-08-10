@@ -11,6 +11,11 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 
 export class HomePage extends Component {
+    //go to the top of the page
+    componentDidMount() {
+        window.scroll(0, 0);
+    }
+
     render() {
         return (
             <div>

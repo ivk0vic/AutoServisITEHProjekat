@@ -40,7 +40,7 @@ export class FooterDesktop extends Component {
                                     Vise o kompaniji
                                 </Link>
                                 <br></br>
-                                <Link to="/" className="footer-link">
+                                <Link to="/contact" className="footer-link">
                                     {" "}
                                     Kontakt
                                 </Link>
@@ -51,16 +51,16 @@ export class FooterDesktop extends Component {
                                 <h5 className="footer-menu-title">
                                     VISE INFORMACIJA
                                 </h5>
-                                <Link to="/" className="footer-link">
+                                <Link to="/purchase" className="footer-link">
                                     Kako porucivati
                                 </Link>
                                 <br></br>
-                                <Link to="/" className="footer-link">
+                                <Link to="/privacy" className="footer-link">
                                     {" "}
                                     Politika Privatnosti
                                 </Link>
                                 <br></br>
-                                <Link to="/" className="footer-link">
+                                <Link to="/refund" className="footer-link">
                                     {" "}
                                     Politika refundiranja novca{" "}
                                 </Link>

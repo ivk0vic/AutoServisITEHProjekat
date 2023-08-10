@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import Logo from "../../assets/images/logo.jpg";
+import Bars from "../../assets/images/bars.png";
 import { Link } from "react-router-dom";
 import MeniSvi from "../home/MeniSvi";
 
@@ -48,12 +49,11 @@ class NavMenuDesktop extends Component {
                         >
                             <Row>
                                 <Col lg={4} md={4} sm={12} xs={12}>
-                                    <Button
+                                    <img
                                         onClick={this.MenuBarClickHandler}
-                                        className="btn"
-                                    >
-                                        <i className="fa fa-bars"></i>{" "}
-                                    </Button>
+                                        className="bar-img"
+                                        src={Bars}
+                                    />
                                     <Link to="/">
                                         {" "}
                                         <img
@@ -92,7 +92,7 @@ class NavMenuDesktop extends Component {
                                     sm={12}
                                     xs={12}
                                 >
-                                    <Link to="/" className="btn">
+                                    <Link to="/favourite" className="btn">
                                         <i className="fa h4 fa-heart"></i>
                                         <sup>
                                             <span className="badge text-white bg-danger">
@@ -100,7 +100,7 @@ class NavMenuDesktop extends Component {
                                             </span>
                                         </sup>
                                     </Link>
-                                    <Link to="/" className="btn">
+                                    <Link to="/notification" className="btn">
                                         <i className="fa h4 fa-bell"></i>
                                         <sup>
                                             <span className="badge text-white bg-danger">
@@ -111,14 +111,14 @@ class NavMenuDesktop extends Component {
                                     <a className="btn">
                                         <i className="fa h4 fa-mobile-alt"></i>
                                     </a>
-                                    <Link to="/" className="h4 btn">
+                                    <Link to="/login" className="h4 btn">
                                         LOGIN
                                     </Link>
 
-                                    <Button className="cart-btn">
+                                    <Link to="/cart" className="cart-btn">
                                         <i className="fa fa-shopping-cart"></i>{" "}
                                         3 Items{" "}
-                                    </Button>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Container>
