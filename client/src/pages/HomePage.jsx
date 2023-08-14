@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import AppURL from "../api/AppURL";
 import Izdvojeno from "../components/home/Izdvojeno";
 import Kategorije from "../components/home/Kategorije";
 import Kolekcija from "../components/home/Kolekcija";
@@ -9,11 +10,18 @@ import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
 import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
+import axios from "axios";
 
 export class HomePage extends Component {
     //go to the top of the page
+
+    GetVisitorDetails = () => {
+        axios.get(AppURL.VisitorDetails).then().catch();
+    };
+
     componentDidMount() {
         window.scroll(0, 0);
+        this.GetVisitorDetails();
     }
 
     render() {

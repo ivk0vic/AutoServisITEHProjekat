@@ -1,172 +1,55 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import "../../assets/css/extra.css";
-
-import kat1 from "../../assets/images/kat1.jpg";
-import kat2 from "../../assets/images/kat2.jpg";
-import kat3 from "../../assets/images/kat3.jpg";
-import kat4 from "../../assets/images/kat4.jpg";
-import kat5 from "../../assets/images/kat5.jpg";
-import kat6 from "../../assets/images/kat6.jpg";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
 class Kategorije extends Component {
+    constructor() {
+        super();
+        this.state = {
+            MenuData: [],
+        };
+    }
+    componentDidMount() {
+        axios
+            .get(AppURL.AllCategoryDetails)
+            .then((response) => {
+                this.setState({ MenuData: response.data });
+            })
+            .catch((error) => {});
+    }
+
     render() {
+        const CatList = this.state.MenuData;
+        const MyView = CatList.map((CatList, i) => {
+            return (
+                <Col
+                    key={i.toString()}
+                    className="p-0"
+                    xl={2}
+                    lg={2}
+                    md={2}
+                    sm={6}
+                    xs={6}
+                >
+                    <Card className="h-100 w-100 text-center">
+                        <Card.Body>
+                            <h5 className="category-name">
+                                {CatList.category_name}
+                            </h5>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            );
+        });
         return (
             <Fragment>
                 <Container className="text-center" fluid={true}>
                     <div className="section-title text-center mb-55">
-                        <h2> Kategorije </h2>
-                        <p>Neki tekst</p>
+                        <h2> CATEGORIES</h2>
+                        <p>Some Of Our Exclusive Collection, You May Like</p>
                     </div>
-
-                    <Row>
-                        <center>
-                            <Col
-                                className="center"
-                                key={1}
-                                xs={12}
-                                sm={12}
-                                md={10}
-                                lg={10}
-                                xl={10}
-                            >
-                                <Row>
-                                    <Col
-                                        className="p-0"
-                                        key={1}
-                                        xs={12}
-                                        sm={12}
-                                        md={2}
-                                        lg={2}
-                                        xl={2}
-                                    >
-                                        <Card className="h-100 w-100 text-center">
-                                            <Card.Body>
-                                                <img
-                                                    className="center img-150px"
-                                                    src={kat1}
-                                                    alt="Description of the image"
-                                                />
-                                                <h5 className="category-name">
-                                                    Veliki servis
-                                                </h5>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-
-                                    <Col
-                                        className="p-0"
-                                        key={1}
-                                        xs={12}
-                                        sm={12}
-                                        md={2}
-                                        lg={2}
-                                        xl={2}
-                                    >
-                                        <Card className="h-100 w-100 text-center">
-                                            <Card.Body>
-                                                <img
-                                                    className="center img-150px"
-                                                    src={kat2}
-                                                />
-                                                <h5 className="category-name">
-                                                    Dijagnostika
-                                                </h5>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-
-                                    <Col
-                                        className="p-0"
-                                        key={1}
-                                        xs={12}
-                                        sm={12}
-                                        md={2}
-                                        lg={2}
-                                        xl={2}
-                                    >
-                                        <Card className="h-100 w-100 text-center">
-                                            <Card.Body>
-                                                <img
-                                                    className="center img-150px"
-                                                    src={kat3}
-                                                />
-                                                <h5 className="category-name">
-                                                    Menjac
-                                                </h5>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-
-                                    <Col
-                                        className="p-0"
-                                        key={1}
-                                        xs={12}
-                                        sm={12}
-                                        md={2}
-                                        lg={2}
-                                        xl={2}
-                                    >
-                                        <Card className="h-100 w-100 text-center">
-                                            <Card.Body>
-                                                <img
-                                                    className="center img-150px"
-                                                    src={kat4}
-                                                />
-                                                <h5 className="category-name">
-                                                    Trap
-                                                </h5>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-
-                                    <Col
-                                        className="p-0"
-                                        key={1}
-                                        xs={12}
-                                        sm={12}
-                                        md={2}
-                                        lg={2}
-                                        xl={2}
-                                    >
-                                        <Card className="h-100 w-100 text-center">
-                                            <Card.Body>
-                                                <img
-                                                    className="center img-150px"
-                                                    src={kat5}
-                                                />
-                                                <h5 className="category-name">
-                                                    Motor
-                                                </h5>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-
-                                    <Col
-                                        className="p-0"
-                                        key={1}
-                                        xs={12}
-                                        sm={12}
-                                        md={2}
-                                        lg={2}
-                                        xl={2}
-                                    >
-                                        <Card className="h-100 w-100 text-center">
-                                            <Card.Body>
-                                                <img
-                                                    className="center img-150px"
-                                                    src={kat6}
-                                                />
-                                                <h5 className="category-name">
-                                                    Akumulator
-                                                </h5>
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </center>
-                    </Row>
+                    <Row>{MyView}</Row>
                 </Container>
             </Fragment>
         );
