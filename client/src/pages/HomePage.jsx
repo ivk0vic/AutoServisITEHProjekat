@@ -38,10 +38,12 @@ export class HomePage extends Component {
                         <VrhMobile />
                     </div>
 
-                    <Novo />
                     <Izdvojeno />
                     <Kategorije />
+                    <Novo />
+
                     <Kolekcija />
+                    <Kategorije />
 
                     <div className="Desktop">
                         <FooterDesktop />

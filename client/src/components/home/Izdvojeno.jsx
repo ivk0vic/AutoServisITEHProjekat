@@ -42,7 +42,7 @@ class Izdvojeno extends Component {
                         sm={4}
                         xs={6}
                     >
-                        <Link to="/productdetails">
+                        <Link to={"/productdetails/" + FeaturedList.id}>
                             <Card className="image-box card">
                                 <img
                                     className="center"
@@ -71,7 +71,7 @@ class Izdvojeno extends Component {
                         sm={4}
                         xs={6}
                     >
-                        <Link to="/productdetails">
+                        <Link to={"/productdetails/" + FeaturedList.id}>
                             <Card className="image-box card">
                                 <img
                                     className="center"
@@ -104,7 +104,7 @@ class Izdvojeno extends Component {
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
                             <h2>Izdvojeno</h2>
-                            <p>Neki tekst</p>
+                            <p>Neki Tekst</p>
                         </div>
 
                         <Row>{MyView}</Row>

@@ -5,14 +5,15 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
-import Category from "../components/DetaljnijiPrikaz/Category";
 import axios from "axios";
+import SubCategory from "../components/DetaljnijiPrikaz/SubCategory";
 
-class ProductCategoryPage extends Component {
+class ProductSubCategoryPage extends Component {
     constructor({ match }) {
         super();
         this.state = {
             Category: match.params.category,
+            SubCategory: match.params.subcategory,
             ProductData: [],
         };
     }
@@ -21,7 +22,12 @@ class ProductCategoryPage extends Component {
         window.scroll(0, 0);
         // alert(this.state.Category);
         axios
-            .get(AppURL.ProductListByCategory(this.state.Category))
+            .get(
+                AppURL.ProductListBySubCategory(
+                    this.state.Category,
+                    this.state.SubCategory
+                )
+            )
             .then((response) => {
                 this.setState({ ProductData: response.data });
             })
@@ -39,8 +45,9 @@ class ProductCategoryPage extends Component {
                     <NavMenuMobile />
                 </div>
 
-                <Category
+                <SubCategory
                     Category={this.state.Category}
+                    SubCategory={this.state.SubCategory}
                     ProductData={this.state.ProductData}
                 />
 
@@ -56,4 +63,4 @@ class ProductCategoryPage extends Component {
     }
 }
 
-export default ProductCategoryPage;
+export default ProductSubCategoryPage;

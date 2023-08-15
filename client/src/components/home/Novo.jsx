@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import NovoLoading from "../PlaceHolder/NovoLoading";
+import { Link } from "react-router-dom";
 
 class Novo extends Component {
     constructor(props) {
@@ -41,26 +42,49 @@ class Novo extends Component {
     render() {
         const NewList = this.state.ProductData;
         const MyView = NewList.map((NewList, i) => {
-            return (
-                <div>
-                    <Card className="image-box card">
-                        <img className="center" src={NewList.image} />
-                        <Card.Body>
-                            <p className="product-name-on-card">
-                                {NewList.title}
-                            </p>
-                            <p className="product-price-on-card">
-                                Price :{" "}
-                                <strike className="text-secondary">
-                                    ${NewList.price}
-                                </strike>{" "}
-                                ${NewList.special_price}
-                            </p>
-                        </Card.Body>
-                    </Card>
-                </div>
-            );
+            if (NewList.special_price == "na") {
+                return (
+                    <div>
+                        <Link to={"/productdetails/" + NewList.id}>
+                            <Card className="image-box card">
+                                <img className="center" src={NewList.image} />
+                                <Card.Body>
+                                    <p className="product-name-on-card">
+                                        {NewList.title}
+                                    </p>
+                                    <p className="product-price-on-card">
+                                        Price : ${NewList.price}
+                                    </p>
+                                </Card.Body>
+                            </Card>
+                        </Link>
+                    </div>
+                );
+            } else {
+                return (
+                    <div>
+                        <Link to={"/productdetails/" + NewList.id}>
+                            <Card className="image-box card">
+                                <img className="center" src={NewList.image} />
+                                <Card.Body>
+                                    <p className="product-name-on-card">
+                                        {NewList.title}
+                                    </p>
+                                    <p className="product-price-on-card">
+                                        Price :{" "}
+                                        <strike className="text-secondary">
+                                            ${NewList.price}
+                                        </strike>{" "}
+                                        ${NewList.special_price}
+                                    </p>
+                                </Card.Body>
+                            </Card>
+                        </Link>
+                    </div>
+                );
+            }
         });
+
         var settings = {
             dots: false,
             infinite: true,
@@ -107,7 +131,7 @@ class Novo extends Component {
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
                             <h2>
-                                PARKING SENZORI, nova kolekcija
+                                Parking Senzori
                                 <a
                                     className="btn btn-sm ml-2 site-btn"
                                     onClick={this.previous}

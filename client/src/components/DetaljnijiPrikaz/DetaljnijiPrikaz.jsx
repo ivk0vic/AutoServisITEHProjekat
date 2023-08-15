@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Product1 from "../../assets/images/product/p1.jpg";
 import Product2 from "../../assets/images/product/p2.jpg";
-
 class DetaljnijiPrikaz extends Component {
     render() {
         return (
@@ -51,6 +50,30 @@ class DetaljnijiPrikaz extends Component {
                                                     src={Product2}
                                                 />
                                             </Col>
+                                            <Col
+                                                className="p-0 m-0"
+                                                md={3}
+                                                lg={3}
+                                                sm={3}
+                                                xs={3}
+                                            >
+                                                <img
+                                                    className="w-100"
+                                                    src={Product1}
+                                                />
+                                            </Col>
+                                            <Col
+                                                className="p-0 m-0"
+                                                md={3}
+                                                lg={3}
+                                                sm={3}
+                                                xs={3}
+                                            >
+                                                <img
+                                                    className="w-100"
+                                                    src={Product2}
+                                                />
+                                            </Col>
                                         </Row>
                                     </Container>
                                 </Col>
@@ -62,18 +85,21 @@ class DetaljnijiPrikaz extends Component {
                                     xs={12}
                                 >
                                     <h5 className="Product-Name">
-                                        Laufenn G FIT EQ+ 155/70 R13 75T
+                                        ASUS TUF A15 FA506IU Ryzen 7 4800H GTX
                                     </h5>
-                                    <h6 className="section-sub-title"></h6>
+                                    <h6 className="section-sub-title">
+                                        Some Of Our Exclusive Collection, You
+                                        May Like Some Of Our Exclusive Collectio
+                                    </h6>
                                     <div className="input-group">
                                         <div className="Product-price-card d-inline ">
-                                            info 1
+                                            Reguler Price 200
                                         </div>
                                         <div className="Product-price-card d-inline ">
-                                            info 2
+                                            50% Discount
                                         </div>
                                         <div className="Product-price-card d-inline ">
-                                            info 3
+                                            New Price 100
                                         </div>
                                     </div>
                                     <h6 className="mt-2">Choose Color</h6>

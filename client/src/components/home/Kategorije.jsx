@@ -43,6 +43,10 @@ class Kategorije extends Component {
                     <Link to={"/productcategory/" + CatList.category_name}>
                         <Card className="h-100 w-100 text-center">
                             <Card.Body>
+                                <img
+                                    width="100px"
+                                    src={CatList.category_image}
+                                />
                                 <h5 className="category-name">
                                     {CatList.category_name}
                                 </h5>
@@ -59,10 +63,7 @@ class Kategorije extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            <h2> Kategorije</h2>
-                            <p>
-                                Odaberi zeljenu kategoriju usluge ili proizvoda
-                            </p>
+                            Kategorije
                         </div>
                         <Row>{MyView}</Row>
                     </Container>
