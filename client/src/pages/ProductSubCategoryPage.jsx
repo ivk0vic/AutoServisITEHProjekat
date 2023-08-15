@@ -6,7 +6,7 @@ import FooterMobile from "../components/common/FooterMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
 import axios from "axios";
-import SubCategory from "../components/DetaljnijiPrikaz/SubCategory";
+import SubCategory from "../components/DetaljnijiPrikaz/Subcategory";
 
 class ProductSubCategoryPage extends Component {
     constructor({ match }) {
