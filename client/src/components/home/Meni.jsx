@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 class Meni extends Component {
     constructor(props) {
@@ -31,9 +32,17 @@ class Meni extends Component {
                             {CatList.subcategory_name.map((SubList, i) => {
                                 return (
                                     <li>
-                                        <a href="#" className="accordionItem">
+                                        <Link
+                                            to={
+                                                "productsubcategory/" +
+                                                CatList.category_name +
+                                                "/" +
+                                                SubList.subcategory_name
+                                            }
+                                            className="accordionItem"
+                                        >
                                             {SubList.subcategory_name}{" "}
-                                        </a>
+                                        </Link>
                                     </li>
                                 );
                             })}

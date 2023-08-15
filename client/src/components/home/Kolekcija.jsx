@@ -1,22 +1,27 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import "../../assets/css/extra.css";
-
 import AppURL from "../../api/AppURL";
 import axios from "axios";
+import KolekcijaLoading from "../PlaceHolder/KolekcijaLoading";
 
 class Kolekcija extends Component {
     constructor() {
         super();
         this.state = {
             ProductData: [],
+            isLoading: "",
+            mainDiv: "d-none",
         };
     }
     componentDidMount() {
         axios
             .get(AppURL.ProductListByRemark("COLLECTION"))
             .then((response) => {
-                this.setState({ ProductData: response.data });
+                this.setState({
+                    ProductData: response.data,
+                    isLoading: "d-none",
+                    mainDiv: " ",
+                });
             })
             .catch((error) => {});
     }
@@ -67,19 +72,26 @@ class Kolekcija extends Component {
                 );
             }
         });
+
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2> Specijalna kolekcija </h2>
-                        <p> Dugotrajni i troškovno isplativi akumulatori </p>
-                    </div>
+                <KolekcijaLoading isLoading={this.state.isLoading} />
 
-                    <Row>{MyView}</Row>
-                </Container>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2> Specijalna kolekcija </h2>
+                            <p>
+                                {" "}
+                                Dugotrajni i troškovno isplativi akumulatori{" "}
+                            </p>
+                        </div>
+
+                        <Row>{MyView}</Row>
+                    </Container>
+                </div>
             </Fragment>
         );
     }
 }
-
 export default Kolekcija;

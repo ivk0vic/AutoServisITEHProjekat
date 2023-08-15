@@ -1,15 +1,17 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import AppURL from "../../api/AppURL";
 import axios from "axios";
+import IzdvojenoLoading from "../PlaceHolder/IzdvojenoLoading";
 
 class Izdvojeno extends Component {
     constructor() {
         super();
         this.state = {
             ProductData: [],
+            isLoading: "",
+            mainDiv: "d-none",
         };
     }
 
@@ -17,7 +19,11 @@ class Izdvojeno extends Component {
         axios
             .get(AppURL.ProductListByRemark("FEATURED"))
             .then((response) => {
-                this.setState({ ProductData: response.data });
+                this.setState({
+                    ProductData: response.data,
+                    isLoading: "d-none",
+                    mainDiv: " ",
+                });
             })
             .catch((error) => {});
     }
@@ -92,14 +98,18 @@ class Izdvojeno extends Component {
 
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2>Izdvojeno</h2>
-                        <p>Neki tekst</p>
-                    </div>
+                <IzdvojenoLoading isLoading={this.state.isLoading} />
 
-                    <Row>{MyView}</Row>
-                </Container>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2>Izdvojeno</h2>
+                            <p>Neki tekst</p>
+                        </div>
+
+                        <Row>{MyView}</Row>
+                    </Container>
+                </div>
             </Fragment>
         );
     }

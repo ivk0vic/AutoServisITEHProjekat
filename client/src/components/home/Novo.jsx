@@ -5,12 +5,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
+import NovoLoading from "../PlaceHolder/NovoLoading";
 
-class NewArrival extends Component {
+class Novo extends Component {
     constructor(props) {
         super(props);
         this.state = {
             ProductData: [],
+            isLoading: "",
+            mainDiv: "d-none",
         };
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
@@ -26,7 +29,11 @@ class NewArrival extends Component {
         axios
             .get(AppURL.ProductListByRemark("NEW"))
             .then((response) => {
-                this.setState({ ProductData: response.data });
+                this.setState({
+                    ProductData: response.data,
+                    isLoading: "d-none",
+                    mainDiv: "",
+                });
             })
             .catch((error) => {});
     }
@@ -94,39 +101,46 @@ class NewArrival extends Component {
 
         return (
             <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2>
-                            PARKING SENZORI, nova kolekcija
-                            <a
-                                className="btn btn-sm ml-2 site-btn"
-                                onClick={this.previous}
-                            >
-                                <i className="fa fa-angle-left"></i>
-                            </a>
-                            &nbsp;
-                            <a
-                                className="btn btn-sm ml-2 site-btn"
-                                onClick={this.next}
-                            >
-                                <i className="fa fa-angle-right"></i>
-                            </a>
-                        </h2>
-                        <p>
-                            Ekskluzivna ponuda najmodernijih parking senzora
-                            koji se lako mogu ugraditi u Vas automobil!
-                        </p>
-                    </div>
+                <NovoLoading isLoading={this.state.isLoading} />
 
-                    <Row>
-                        <Slider ref={(c) => (this.slider = c)} {...settings}>
-                            {MyView}
-                        </Slider>
-                    </Row>
-                </Container>
+                <div className={this.state.mainDiv}>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2>
+                                PARKING SENZORI, nova kolekcija
+                                <a
+                                    className="btn btn-sm ml-2 site-btn"
+                                    onClick={this.previous}
+                                >
+                                    <i className="fa fa-angle-left"></i>
+                                </a>
+                                &nbsp;
+                                <a
+                                    className="btn btn-sm ml-2 site-btn"
+                                    onClick={this.next}
+                                >
+                                    <i className="fa fa-angle-right"></i>
+                                </a>
+                            </h2>
+                            <p>
+                                Ekskluzivna ponuda najmodernijih parking senzora
+                                koji se lako mogu ugraditi u Vas automobil!
+                            </p>
+                        </div>
+
+                        <Row>
+                            <Slider
+                                ref={(c) => (this.slider = c)}
+                                {...settings}
+                            >
+                                {MyView}
+                            </Slider>
+                        </Row>
+                    </Container>
+                </div>
             </Fragment>
         );
     }
 }
 
-export default NewArrival;
+export default Novo;
