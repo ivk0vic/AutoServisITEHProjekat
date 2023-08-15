@@ -46,8 +46,8 @@ class Kategorije extends Component {
             <Fragment>
                 <Container className="text-center" fluid={true}>
                     <div className="section-title text-center mb-55">
-                        <h2> CATEGORIES</h2>
-                        <p>Some Of Our Exclusive Collection, You May Like</p>
+                        <h2> Kategorije</h2>
+                        <p>Odaberi zeljenu kategoriju usluge ili proizvoda</p>
                     </div>
                     <Row>{MyView}</Row>
                 </Container>

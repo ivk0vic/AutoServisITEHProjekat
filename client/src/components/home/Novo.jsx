@@ -3,22 +3,15 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
-import a1 from "../../assets/images/a1.png";
-import a2 from "../../assets/images/a2.png";
-
-import p1 from "../../assets/images/p1.jpg";
-import p2 from "../../assets/images/p2.jpg";
-import p3 from "../../assets/images/p3.jpg";
-import p4 from "../../assets/images/p4.jpg";
-import p5 from "../../assets/images/p5.jpg";
-import p6 from "../../assets/images/p6.jpg";
-import p7 from "../../assets/images/p7.jpg";
-import p8 from "../../assets/images/p8.jpg";
-
-class Novo extends Component {
+class NewArrival extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            ProductData: [],
+        };
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
     }
@@ -29,7 +22,38 @@ class Novo extends Component {
         this.slider.slickPrev();
     }
 
+    componentDidMount() {
+        axios
+            .get(AppURL.ProductListByRemark("NEW"))
+            .then((response) => {
+                this.setState({ ProductData: response.data });
+            })
+            .catch((error) => {});
+    }
+
     render() {
+        const NewList = this.state.ProductData;
+        const MyView = NewList.map((NewList, i) => {
+            return (
+                <div>
+                    <Card className="image-box card">
+                        <img className="center" src={NewList.image} />
+                        <Card.Body>
+                            <p className="product-name-on-card">
+                                {NewList.title}
+                            </p>
+                            <p className="product-price-on-card">
+                                Price :{" "}
+                                <strike className="text-secondary">
+                                    ${NewList.price}
+                                </strike>{" "}
+                                ${NewList.special_price}
+                            </p>
+                        </Card.Body>
+                    </Card>
+                </div>
+            );
+        });
         var settings = {
             dots: false,
             infinite: true,
@@ -71,129 +95,32 @@ class Novo extends Component {
         return (
             <Fragment>
                 <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center">
+                    <div className="section-title text-center mb-55">
                         <h2>
-                            NOVO U PONUDI <br></br>
-                            <a className="w-25" onClick={this.previous}>
-                                <img src={a1} width="100px"></img>
+                            PARKING SENZORI, nova kolekcija
+                            <a
+                                className="btn btn-sm ml-2 site-btn"
+                                onClick={this.previous}
+                            >
+                                <i className="fa fa-angle-left"></i>
                             </a>
                             &nbsp;
-                            <a className="w-25" onClick={this.next}>
-                                <img src={a2} width="100px"></img>
+                            <a
+                                className="btn btn-sm ml-2 site-btn"
+                                onClick={this.next}
+                            >
+                                <i className="fa fa-angle-right"></i>
                             </a>
                         </h2>
                         <p>
-                            Iz najnovije kolekcije izdvajamo ugradnju parking
-                            senzora:
+                            Ekskluzivna ponuda najmodernijih parking senzora
+                            koji se lako mogu ugraditi u Vas automobil!
                         </p>
                     </div>
 
                     <Row>
                         <Slider ref={(c) => (this.slider = c)} {...settings}>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p1} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p2}></img>
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p3} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p4} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p5} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p6} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p7} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                            <div>
-                                <Card className="image-box card">
-                                    <img className="center" src={p8} />
-                                    <Card.Body>
-                                        <p className="product-name-on-card">
-                                            Parking senzor 1
-                                        </p>
-                                        <p className="product-price-on-card">
-                                            Cena: 6999 din
-                                        </p>
-                                    </Card.Body>
-                                </Card>
-                            </div>
+                            {MyView}
                         </Slider>
                     </Row>
                 </Container>
@@ -202,4 +129,4 @@ class Novo extends Component {
     }
 }
 
-export default Novo;
+export default NewArrival;

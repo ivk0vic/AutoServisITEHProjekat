@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,7 @@ Route::get('/getvisitor', [VisitorController::class, 'GetVisitorDetails']);
 Route::post('/postcontact', [ContactController::class, 'PostContactDetails']);
 Route::get('/allsiteinfo', [SiteInfoController::class, 'AllSiteInfo']);
 Route::get('/allcategory', [CategoryController::class, 'AllCategory']);
+
+Route::get('/productlistbyremark/{remark}', [ProductListController::class, 'ProductListByRemark']);
+Route::get('/productlistbycategory/{category}', [ProductListController::class, 'ProductListByCategory']);
+Route::get('/productlistbysubcategory/{category}/{subcategory}', [ProductListController::class, 'ProductListBySubcategory']);
