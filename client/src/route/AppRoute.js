@@ -11,6 +11,8 @@ import OmiljenoPage from '../pages/OmiljenoPage';
 import NotificationPage from '../pages/NotificationPage';
 import KorpaPage from '../pages/KorpaPage';
 import AboutPage from '../pages/AboutPage';
+import ProductCategoryPage from '../pages/ProductCategoryPage';
+import ProductSubCategoryPage from '../pages/ProductSubCategoryPage';
 
 class AppRoute extends Component {
      render() {
@@ -21,7 +23,7 @@ class AppRoute extends Component {
                <Route exact path="/login" component={UserLoginPage} />
                <Route exact path="/contact" component={ContactPage} />
 
-               <Route exact path="/productdetails" component={DetaljnijiPrikazPage} />
+               <Route exact path="/productdetails/:code" component={DetaljnijiPrikazPage} />
                <Route exact path="/notification" component={NotificationPage} />
                <Route exact path="/favourite" component={OmiljenoPage} />
                <Route exact path="/cart" component={KorpaPage} />
@@ -29,7 +31,10 @@ class AppRoute extends Component {
                <Route exact path="/purchase" component={PurchasePage} />
                <Route exact path="/privacy" component={PrivacyPage} />
                <Route exact path="/refund" component={RefundPage} />
-               <Route exact path="/about" component={AboutPage} />     
+               <Route exact path="/about" component={AboutPage} />    
+
+               <Route exact path="/productcategory/:category" component={ProductCategoryPage} />
+               <Route exact path="/productsubcategory/:category/:subcategory" component={ProductSubCategoryPage} /> 
 
           </Switch>
 
