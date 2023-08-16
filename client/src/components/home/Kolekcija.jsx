@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import KolekcijaLoading from "../PlaceHolder/KolekcijaLoading";
+import { Link } from "react-router-dom";
 
 class Kolekcija extends Component {
     constructor() {
@@ -13,6 +14,7 @@ class Kolekcija extends Component {
             mainDiv: "d-none",
         };
     }
+
     componentDidMount() {
         axios
             .get(AppURL.ProductListByRemark("COLLECTION"))
@@ -25,49 +27,60 @@ class Kolekcija extends Component {
             })
             .catch((error) => {});
     }
+
     render() {
         const CollectionList = this.state.ProductData;
         const MyView = CollectionList.map((CollectionList, i) => {
             if (CollectionList.special_price == "na") {
                 return (
                     <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                        <Card className="image-box card w-100">
-                            <img
-                                className="center w-75"
-                                src={CollectionList.image}
-                            />
-                            <Card.Body>
-                                <p className="product-name-on-card">
-                                    {CollectionList.title}
-                                </p>
-                                <p className="product-price-on-card">
-                                    Price : ${CollectionList.price}
-                                </p>
-                            </Card.Body>
-                        </Card>
+                        <Link
+                            className="text-link"
+                            to={"/productdetails/" + CollectionList.id}
+                        >
+                            <Card className="image-box card w-100">
+                                <img
+                                    className="center w-75"
+                                    src={CollectionList.image}
+                                />
+                                <Card.Body>
+                                    <p className="product-name-on-card">
+                                        {CollectionList.title}
+                                    </p>
+                                    <p className="product-price-on-card">
+                                        Price : ${CollectionList.price}
+                                    </p>
+                                </Card.Body>
+                            </Card>
+                        </Link>
                     </Col>
                 );
             } else {
                 return (
                     <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={6}>
-                        <Card className="image-box card w-100">
-                            <img
-                                className="center w-75"
-                                src={CollectionList.image}
-                            />
-                            <Card.Body>
-                                <p className="product-name-on-card">
-                                    {CollectionList.title}
-                                </p>
-                                <p className="product-price-on-card">
-                                    Price :{" "}
-                                    <strike className="text-secondary">
-                                        ${CollectionList.price}
-                                    </strike>{" "}
-                                    ${CollectionList.special_price}
-                                </p>
-                            </Card.Body>
-                        </Card>
+                        <Link
+                            className="text-link"
+                            to={"/productdetails/" + CollectionList.id}
+                        >
+                            <Card className="image-box card w-100">
+                                <img
+                                    className="center w-75"
+                                    src={CollectionList.image}
+                                />
+                                <Card.Body>
+                                    <p className="product-name-on-card">
+                                        {CollectionList.title}
+                                    </p>
+                                    <p className="product-price-on-card">
+                                        Price :{" "}
+                                        <strike className="text-secondary">
+                                            ${CollectionList.price}
+                                        </strike>{" "}
+                                        ${CollectionList.special_price}
+                                    </p>
+                                </Card.Body>
+                            </Card>
+                        </Link>
                     </Col>
                 );
             }
@@ -94,4 +107,5 @@ class Kolekcija extends Component {
         );
     }
 }
+
 export default Kolekcija;
