@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Navbar, Container, Row, Col, Button } from "react-bootstrap";
 import Logo from "../../assets/images/logo.jpg";
 import Bars from "../../assets/images/bars.png";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import MeniSvi from "../home/MeniSvi";
 
 class NavMenuDesktop extends Component {
@@ -11,7 +11,30 @@ class NavMenuDesktop extends Component {
         this.state = {
             SideNavState: "sideNavClose",
             ContentOverState: "ContentOverlayClose",
+            Searchkey: "",
+            SearchRedirectStauts: false,
         };
+        this.SearchOnChange = this.SearchOnChange.bind(this);
+        this.SeachOnClick = this.SeachOnClick.bind(this);
+        this.searchRedirect = this.searchRedirect.bind(this);
+    }
+
+    SearchOnChange(event) {
+        let Searchkey = event.target.value;
+        // alert(Searchkey);
+        this.setState({ Searchkey: Searchkey });
+    }
+
+    SeachOnClick() {
+        if (this.state.Searchkey.length >= 2) {
+            this.setState({ SearchRedirectStauts: true });
+        }
+    }
+
+    searchRedirect() {
+        if (this.state.SearchRedirectStauts === true) {
+            return <Redirect to={"/productbysearch/" + this.state.Searchkey} />;
+        }
     }
 
     MenuBarClickHandler = () => {
@@ -54,12 +77,12 @@ class NavMenuDesktop extends Component {
                                         className="bar-img"
                                         src={Bars}
                                     />
+
                                     <Link to="/">
                                         {" "}
                                         <img
                                             className="nav-logo"
                                             src={Logo}
-                                            width="50px"
                                         />{" "}
                                     </Link>
                                 </Col>
@@ -73,10 +96,13 @@ class NavMenuDesktop extends Component {
                                 >
                                     <div className="input-group w-100">
                                         <input
+                                            onChange={this.SearchOnChange}
                                             type="text"
                                             className="form-control"
                                         />
+
                                         <Button
+                                            onClick={this.SeachOnClick}
                                             type="button"
                                             className="btn site-btn"
                                         >
@@ -100,6 +126,7 @@ class NavMenuDesktop extends Component {
                                             </span>
                                         </sup>
                                     </Link>
+
                                     <Link to="/notification" className="btn">
                                         <i className="fa h4 fa-bell"></i>
                                         <sup>
@@ -121,6 +148,7 @@ class NavMenuDesktop extends Component {
                                     </Link>
                                 </Col>
                             </Row>
+                            {this.searchRedirect()}
                         </Container>
                     </Navbar>
                 </div>

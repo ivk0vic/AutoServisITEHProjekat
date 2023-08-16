@@ -33,6 +33,7 @@ Route::get('/allcategory', [CategoryController::class, 'AllCategory']);
 Route::get('/productlistbyremark/{remark}', [ProductListController::class, 'ProductListByRemark']);
 Route::get('/productlistbycategory/{category}', [ProductListController::class, 'ProductListByCategory']);
 Route::get('/productlistbysubcategory/{category}/{subcategory}', [ProductListController::class, 'ProductListBySubcategory']);
+Route::get('/search/{key}', [ProductListController::class, 'ProductBySearch']);
 
 Route::get('allslider', [SliderController::class, 'AllSlider']);
 
