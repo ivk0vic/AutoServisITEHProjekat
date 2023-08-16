@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { Link } from "react-router-dom";
 
 class About extends Component {
     constructor() {
@@ -35,6 +37,19 @@ class About extends Component {
         return (
             <Fragment>
                 <Container>
+                    <div className="breadbody">
+                        <Breadcrumb>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/"> Home </Link>{" "}
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/about"> About </Link>{" "}
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+
                     <Row className="p-2">
                         <Col
                             className="shadow-sm bg-white mt-2"
@@ -43,8 +58,6 @@ class About extends Component {
                             sm={12}
                             xs={12}
                         >
-                            <h4 className="section-title-login"> O nama </h4>
-                            <br></br>
                             <div className={this.state.loaderDiv}>
                                 <div class="ph-item">
                                     <div class="ph-col-12">
@@ -78,6 +91,9 @@ class About extends Component {
                             </div>
 
                             <div className={this.state.mainDiv}>
+                                <h4 className="section-title-login">
+                                    About Us Page{" "}
+                                </h4>
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.about)}
                                 </p>

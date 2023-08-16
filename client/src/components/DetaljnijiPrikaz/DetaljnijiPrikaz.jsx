@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 import ReactDOM from "react-dom";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { Link } from "react-router-dom";
 
 class DetaljnijiPrikaz extends Component {
     constructor() {
@@ -58,6 +60,46 @@ class DetaljnijiPrikaz extends Component {
         return (
             <Fragment>
                 <Container fluid={true} className="BetweenTwoSection">
+                    <div className="breadbody">
+                        <Breadcrumb>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/"> Home </Link>{" "}
+                            </Breadcrumb.Item>
+
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to={"/productcategory/" + category}>
+                                    {" "}
+                                    {category}{" "}
+                                </Link>{" "}
+                            </Breadcrumb.Item>
+
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link
+                                    to={
+                                        "/productsubcategory/" +
+                                        category +
+                                        "/" +
+                                        subcategory
+                                    }
+                                >
+                                    {" "}
+                                    {subcategory}{" "}
+                                </Link>{" "}
+                            </Breadcrumb.Item>
+
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to={"/productdetails/" + product_id}>
+                                    {" "}
+                                    {title}{" "}
+                                </Link>{" "}
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+
                     <Row className="p-2">
                         <Col
                             className="shadow-sm bg-white pb-3 mt-4"
@@ -148,7 +190,9 @@ class DetaljnijiPrikaz extends Component {
                                         {" "}
                                         {short_description}{" "}
                                     </h6>
+
                                     {this.PriceOption(price, special_price)}
+
                                     <h6 className="mt-2">
                                         Category : <b>{category}</b>{" "}
                                     </h6>
