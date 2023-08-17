@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\VisitorController;
 use App\Http\Controllers\Admin\ContactController;
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgetController;
+use App\Http\Controllers\ResetController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,3 +45,10 @@ Route::get('allslider', [SliderController::class, 'AllSlider']);
 Route::get('/productdetails/{id}', [ProductDetailsController::class, 'ProductDetails']);
 
 Route::get('/notification', [NotificationController::class, 'NotificationHistory']);
+
+//Laravel Passport
+Route::post('/login', [AuthController::class, 'Login']);
+Route::post('/register', [AuthController::class, 'Register']);
+Route::post('/forgetpassword', [ForgetController::class, 'ForgetPassword']);
+Route::post('/resetpassword', [ResetController::class, 'ResetPassword']);
+Route::get('/user', [UserController::class, 'User'])->middleware('auth:api');
