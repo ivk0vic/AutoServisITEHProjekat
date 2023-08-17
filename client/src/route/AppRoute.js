@@ -14,6 +14,12 @@ import UserLoginPage from '../pages/UserLoginPage';
 import DetaljnijiPrikazPage from '../pages/DetaljnijiPrikazPage';
 import OmiljenoPage from '../pages/OmiljenoPage';
 import SearchPage from '../pages/SearchPage';
+import RegisterPage from '../pages/RegisterPage';
+import ForgetPasswordPage from '../pages/ForgetPasswordPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
+import ProfilePage from '../pages/ProfilePage';
+import Profile from '../components/common/Profile';
+
 
 
 class AppRoute extends Component {
@@ -50,6 +56,16 @@ class AppRoute extends Component {
  <Route exact path="/productsubcategory/:category/:subcategory" render={(props) => <ProductSubCategoryPage {...props} key={Date.now()} /> } /> 
               
 <Route exact path="/productbysearch/:searchkey" render={(props) => <SearchPage {...props} key={Date.now()} /> } /> 
+
+<Route exact path="/register" render={(props) => <RegisterPage {...props} key={Date.now()} /> } />
+
+ <Route exact path="/forget" render={(props) => <ForgetPasswordPage {...props} key={Date.now()} /> } />
+
+ <Route exact path="/reset/:id" render={(props) => <ResetPasswordPage {...props} key={Date.now()} /> } />
+
+ <Route exact path="/profile" render={(props) => <Profile {...props} key={Date.now()} /> } />
+
+ <Route exact path="/profile" render={(props) => <ProfilePage {...props} key={Date.now()} /> } />
           </Switch>
 
      </Fragment>

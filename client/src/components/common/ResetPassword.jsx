@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import Login from "../../assets/images/login.png";
 import { Link } from "react-router-dom";
-class UserLogin extends Component {
+import Forget from "../../assets/images/forget.jpg";
+
+export class ResetPassword extends Component {
     render() {
         return (
             <Fragment>
@@ -26,31 +27,37 @@ class UserLogin extends Component {
                                     <Form className="onboardForm">
                                         <h4 className="section-title-login">
                                             {" "}
-                                            USER SIGN IN{" "}
+                                            RESET PASSWORD{" "}
                                         </h4>
+
+                                        <input
+                                            className="form-control m-2"
+                                            type="text"
+                                            placeholder="Enter Your Pin Code"
+                                        />
+
                                         <input
                                             className="form-control m-2"
                                             type="email"
                                             placeholder="Enter Your Email"
                                         />
+
                                         <input
                                             className="form-control m-2"
                                             type="password"
-                                            placeholder="Enter Your password"
+                                            placeholder="Your New Password"
                                         />
+
+                                        <input
+                                            className="form-control m-2"
+                                            type="password"
+                                            placeholder="Confirm Your Password"
+                                        />
+
                                         <Button className="btn btn-block m-2 site-btn-login">
                                             {" "}
-                                            Login{" "}
+                                            Reset Password{" "}
                                         </Button>
-                                        <br></br> <br></br>
-                                        <hr />
-                                        <p>
-                                            {" "}
-                                            <b> Forgot Your Password? </b>
-                                            <Link to="/forget">
-                                                <b> Password Reset </b>{" "}
-                                            </Link>{" "}
-                                        </p>
                                     </Form>
                                 </Col>
 
@@ -63,7 +70,7 @@ class UserLogin extends Component {
                                 >
                                     <img
                                         className="onboardBanner"
-                                        src={Login}
+                                        src={Forget}
                                     />
                                 </Col>
                             </Row>
@@ -75,4 +82,4 @@ class UserLogin extends Component {
     }
 }
 
-export default UserLogin;
+export default ResetPassword;
