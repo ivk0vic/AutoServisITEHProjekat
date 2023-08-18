@@ -1,20 +1,23 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
 import ReactDOM from "react-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import InnerImageZoom from "react-inner-image-zoom";
 
 class DetaljnijiPrikaz extends Component {
     constructor() {
         super();
+        this.state = {
+            previewImg: "0",
+        };
     }
 
-    imgOnClick(event) {
+    imgOnClick = (event) => {
         let imgSrc = event.target.getAttribute("src");
-        let previewImg = document.getElementById("previewImg");
-        ReactDOM.findDOMNode(previewImg).setAttribute("src", imgSrc);
-    }
+        this.setState({ previewImg: imgSrc });
+    };
 
     PriceOption(price, special_price) {
         if (special_price == "na") {
@@ -37,6 +40,10 @@ class DetaljnijiPrikaz extends Component {
         let category = ProductAllData["productList"][0]["category"];
         let subcategory = ProductAllData["productList"][0]["subcategory"];
         let image = ProductAllData["productList"][0]["image"];
+
+        if (this.state.previewImg === "0") {
+            this.setState({ previewImg: image });
+        }
 
         let price = ProductAllData["productList"][0]["price"];
         let product_code = ProductAllData["productList"][0]["product_code"];
@@ -116,11 +123,14 @@ class DetaljnijiPrikaz extends Component {
                                     sm={12}
                                     xs={12}
                                 >
-                                    <img
-                                        id="previewImg"
-                                        className="bigimage"
-                                        src={image_one}
+                                    <InnerImageZoom
+                                        className="detailimage"
+                                        zoomScale={1.8}
+                                        zoomType={"hover"}
+                                        src={this.state.previewImg}
+                                        zoomSrc={this.state.previewImg}
                                     />
+
                                     <Container className="my-3">
                                         <Row>
                                             <Col
