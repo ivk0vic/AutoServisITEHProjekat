@@ -2,23 +2,70 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "react-inner-image-zoom";
 import Predlozeno from "./Predlozeno";
 import ReviewList from "./ReviewList";
+import cogoToast from "cogo-toast";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
 class DetaljnijiPrikaz extends Component {
     constructor() {
         super();
         this.state = {
             previewImg: "0",
+            isSize: null,
+            productCode: null,
+            addToCart: "Add To Cart",
+            PageRefreshStatus: false,
         };
     }
 
     imgOnClick = (event) => {
         let imgSrc = event.target.getAttribute("src");
         this.setState({ previewImg: imgSrc });
+    };
+
+    addToCart = () => {
+        let isSize = this.state.isSize;
+        let productCode = this.state.productCode;
+
+        this.setState({ addToCart: "Adding..." });
+        let MyFormData = new FormData();
+        MyFormData.append("product_code", productCode);
+
+        axios
+            .post(AppURL.addToCart, MyFormData)
+            .then((response) => {
+                alert("info2: ", response);
+                if (response.data === 1) {
+                    cogoToast.success("Product Added Successfully", {
+                        position: "top-right",
+                    });
+                    this.setState({ addToCart: "Add To Cart" });
+                    this.setState({ PageRefreshStatus: true });
+                } else {
+                    cogoToast.error("Error adding the product! 1", {
+                        position: "top-right",
+                    });
+                    this.setState({ addToCart: "Add To Cart" });
+                }
+            })
+            .catch((error) => {
+                cogoToast.error("Error adding the product! 2", {
+                    position: "top-right",
+                });
+                this.setState({ addToCart: "Add To Cart" });
+            });
+    };
+
+    PageRefresh = () => {
+        if (this.state.PageRefreshStatus === true) {
+            let URL = window.location;
+            return <Redirect to={URL} />;
+        }
     };
 
     PriceOption(price, special_price) {
@@ -57,14 +104,16 @@ class DetaljnijiPrikaz extends Component {
         let image_two = ProductAllData["productDetails"][0]["image_two"];
         let image_three = ProductAllData["productDetails"][0]["image_three"];
         let image_four = ProductAllData["productDetails"][0]["image_four"];
-        let color = ProductAllData["productDetails"][0]["color"];
-        let size = ProductAllData["productDetails"][0]["size"];
 
         let product_id = ProductAllData["productDetails"][0]["product_id"];
         let short_description =
             ProductAllData["productDetails"][0]["short_description"];
         let long_description =
             ProductAllData["productDetails"][0]["long_description"];
+
+        if (this.state.productCode === null) {
+            this.setState({ productCode: product_code });
+        }
 
         return (
             <Fragment>
@@ -221,31 +270,14 @@ class DetaljnijiPrikaz extends Component {
                                         Product Code : <b>{product_code}</b>
                                     </h6>
 
-                                    <div className="">
-                                        <h6 className="mt-2">
-                                            {" "}
-                                            Choose Quantity{" "}
-                                        </h6>
-                                        <select className="form-control form-select">
-                                            <option>Choose Quantity</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                            <option value="07">07</option>
-                                            <option value="08">08</option>
-                                            <option value="09">09</option>
-                                            <option value="10">10</option>
-                                        </select>
-                                    </div>
-
                                     <div className="input-group mt-3">
-                                        <button className="btn site-btn m-1 ">
+                                        <button
+                                            onClick={this.addToCart}
+                                            className="btn site-btn m-1 "
+                                        >
                                             {" "}
                                             <i className="fa fa-shopping-cart"></i>{" "}
-                                            Add To Cart
+                                            {this.state.addToCart}{" "}
                                         </button>
                                         <button className="btn btn-primary m-1">
                                             {" "}
@@ -276,6 +308,8 @@ class DetaljnijiPrikaz extends Component {
                 </Container>
 
                 <Predlozeno subcategory={subcategory} />
+
+                {this.PageRefresh()}
             </Fragment>
         );
     }

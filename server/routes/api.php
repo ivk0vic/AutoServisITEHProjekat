@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductCartController;
 use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SiteInfoController;
@@ -49,6 +50,9 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 
 Route::get('/similar/{subcategory}', [ProductListController::class, 'SimilarProduct']);
 Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
+
+Route::get('/addtocart', [ProductCartController::class, 'addToCart']);
+Route::get('/cartcount/{product_code}', [ProductCartController::class, 'CartCount']);
 
 //Laravel Passport
 Route::post('/login', [AuthController::class, 'Login']);

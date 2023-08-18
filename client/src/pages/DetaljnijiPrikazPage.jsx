@@ -5,7 +5,7 @@ import FooterMobile from "../components/common/FooterMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
 import DetaljnijiPrikaz from "../components/DetaljnijiPrikaz/DetaljnijiPrikaz";
-
+import Predlozeno from "../components/DetaljnijiPrikaz/Predlozeno";
 import axios from "axios";
 import SliderLoading from "../components/PlaceHolder/SliderLoading";
 
@@ -36,7 +36,9 @@ class DetaljnijiPrikazPage extends Component {
     }
 
     render() {
-        if (this.state.mainDiv == "d-none") {
+        const User = this.props.user;
+
+        if (this.state.mainDiv === "d-none") {
             return (
                 <Fragment>
                     <div className="Desktop">
@@ -69,7 +71,10 @@ class DetaljnijiPrikazPage extends Component {
                         <NavMenuMobile />
                     </div>
 
-                    <DetaljnijiPrikaz data={this.state.ProductData} />
+                    <DetaljnijiPrikaz
+                        data={this.state.ProductData}
+                        user={User}
+                    />
 
                     <div className="Desktop">
                         <FooterDesktop />

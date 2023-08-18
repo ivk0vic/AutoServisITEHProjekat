@@ -4,6 +4,8 @@ import Logo from "../../assets/images/logo.jpg";
 import Bars from "../../assets/images/bars.png";
 import { Link, Redirect } from "react-router-dom";
 import MeniSvi from "../home/MeniSvi";
+import axios from "axios";
+import AppURL from "../../api/AppURL";
 
 class NavMenuDesktop extends Component {
     constructor() {
@@ -13,6 +15,7 @@ class NavMenuDesktop extends Component {
             ContentOverState: "ContentOverlayClose",
             Searchkey: "",
             SearchRedirectStauts: false,
+            cartCount: 0,
         };
         this.SearchOnChange = this.SearchOnChange.bind(this);
         this.SeachOnClick = this.SeachOnClick.bind(this);
@@ -22,6 +25,13 @@ class NavMenuDesktop extends Component {
     logout = () => {
         localStorage.clear();
     };
+
+    componentDidMount() {
+        let product_code = this.props.product_code;
+        axios.get(AppURL.CartCount(product_code)).then((response) => {
+            this.setState({ cartCount: response.data });
+        });
+    }
 
     SearchOnChange(event) {
         let Searchkey = event.target.value;
@@ -96,7 +106,8 @@ class NavMenuDesktop extends Component {
                     </Link>
 
                     <Link to="/cart" className="cart-btn">
-                        <i className="fa fa-shopping-cart"></i> 3 Items{" "}
+                        <i className="fa fa-shopping-cart"></i>{" "}
+                        {this.state.cartCount} items{" "}
                     </Link>
                 </div>
             );
@@ -129,7 +140,7 @@ class NavMenuDesktop extends Component {
                     </Link>
 
                     <Link to="/cart" className="cart-btn">
-                        <i className="fa fa-shopping-cart"></i> 3 Items{" "}
+                        <i className="fa fa-shopping-cart"></i> 0 items{" "}
                     </Link>
                 </div>
             );
