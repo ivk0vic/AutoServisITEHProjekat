@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductDetailsController;
 use App\Http\Controllers\Admin\ProductListController;
 use App\Http\Controllers\Admin\SiteInfoController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\VisitorController;
@@ -45,6 +46,9 @@ Route::get('allslider', [SliderController::class, 'AllSlider']);
 Route::get('/productdetails/{id}', [ProductDetailsController::class, 'ProductDetails']);
 
 Route::get('/notification', [NotificationController::class, 'NotificationHistory']);
+
+Route::get('/similar/{subcategory}', [ProductListController::class, 'SimilarProduct']);
+Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
 
 //Laravel Passport
 Route::post('/login', [AuthController::class, 'Login']);
