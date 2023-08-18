@@ -104,11 +104,7 @@ export class FooterDesktop extends Component {
                                     {" "}
                                     O nama
                                 </Link>
-                                <br></br>
-                                <Link to="/" className="footer-link">
-                                    {" "}
-                                    Vise o kompaniji
-                                </Link>
+
                                 <br></br>
                                 <Link to="/contact" className="footer-link">
                                     {" "}

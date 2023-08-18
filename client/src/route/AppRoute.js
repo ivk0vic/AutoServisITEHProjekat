@@ -21,6 +21,7 @@ import SearchPage from '../pages/SearchPage';
 import UserLoginPage from '../pages/UserLoginPage';
 import axios from 'axios' 
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
+import OrderListPage from '../pages/OrderListPage';
 
 class AppRoute extends Component {
 
@@ -82,8 +83,8 @@ class AppRoute extends Component {
 
  <Route exact path="/notification" render={(props) => <NotificationPage {...props} key={Date.now()} /> } />
 
- <Route exact path="/favourite" render={(props) => <OmiljenoPage {...props} key={Date.now()} /> } />
-
+ <Route exact path="/favourite" render={(props) => <OmiljenoPage user={this.state.user} {...props} key={Date.now()} /> } />
+ 
  <Route exact path="/cart" render={(props) => <KorpaPage {...props} key={Date.now()} /> } />
 
  <Route exact path="/productcategory/:category" render={(props) => <ProductCategoryPage {...props} key={Date.now()} /> } />
@@ -92,7 +93,7 @@ class AppRoute extends Component {
 
  <Route exact path="/productbysearch/:searchkey" render={(props) => <SearchPage {...props} key={Date.now()} /> } /> 
                   
-
+<Route exact path="/orderlist" render={(props) => <OrderListPage user={this.state.user} {...props} key={Date.now()} /> } />
           </Switch>
 
      </Fragment>

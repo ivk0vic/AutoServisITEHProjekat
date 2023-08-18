@@ -6,14 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductCart;
 use App\Models\ProductList;
+use App\Models\CartOrder;
 
 class ProductCartController extends Controller
 {
     public function addToCart(Request $request)
     {
-
-        echo "<script>console.log('Debug Objects:  dsadsadd' );</script>";
-
         $email = $request->input('email');
         $size = $request->input('size');
         $color = $request->input('color');
@@ -29,7 +27,7 @@ class ProductCartController extends Controller
             $total_price = $price * $quantity;
             $unit_price = $price;
         } else {
-            $total_price = $special_price * $quantity;
+            $total_price = $special_price * intval($quantity);
             $unit_price = $special_price;
         }
 
@@ -56,6 +54,13 @@ class ProductCartController extends Controller
     {
         $product_code = $request->product_code;
         $result = ProductCart::count();
+        return $result;
+    } // End Method 
+
+    public function OrderListByUser(Request $request)
+    {
+        $email = $request->email;
+        $result = CartOrder::where('email', $email)->orderBy('id', 'DESC')->get();
         return $result;
     } // End Method 
 }

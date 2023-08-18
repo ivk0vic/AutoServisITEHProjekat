@@ -16,10 +16,11 @@ class DetaljnijiPrikaz extends Component {
         super();
         this.state = {
             previewImg: "0",
-            isSize: null,
+
             productCode: null,
             addToCart: "Add To Cart",
             PageRefreshStatus: false,
+            addToFav: "Favourite",
         };
     }
 
@@ -29,7 +30,6 @@ class DetaljnijiPrikaz extends Component {
     };
 
     addToCart = () => {
-        let isSize = this.state.isSize;
         let productCode = this.state.productCode;
 
         this.setState({ addToCart: "Adding..." });
@@ -39,7 +39,6 @@ class DetaljnijiPrikaz extends Component {
         axios
             .post(AppURL.addToCart, MyFormData)
             .then((response) => {
-                alert("info2: ", response);
                 if (response.data === 1) {
                     cogoToast.success("Product Added Successfully", {
                         position: "top-right",
@@ -284,10 +283,13 @@ class DetaljnijiPrikaz extends Component {
                                             <i className="fa fa-car"></i> Order
                                             Now
                                         </button>
-                                        <button className="btn btn-primary m-1">
+                                        <button
+                                            onClick={this.addToFav}
+                                            className="btn btn-primary m-1"
+                                        >
                                             {" "}
                                             <i className="fa fa-heart"></i>{" "}
-                                            Favourite
+                                            {this.state.addToFav}{" "}
                                         </button>
                                     </div>
                                 </Col>

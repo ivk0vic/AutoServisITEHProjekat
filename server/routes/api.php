@@ -16,6 +16,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgetController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\FavouriteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +53,15 @@ Route::get('/notification', [NotificationController::class, 'NotificationHistory
 Route::get('/similar/{subcategory}', [ProductListController::class, 'SimilarProduct']);
 Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
 
-Route::get('/addtocart', [ProductCartController::class, 'addToCart']);
+Route::post('/addtocart', [ProductCartController::class, 'addToCart']);
 Route::get('/cartcount/{product_code}', [ProductCartController::class, 'CartCount']);
+
+Route::get('/orderlistbyuser/{email}', [ProductCartController::class, 'OrderListByUser']);
+
+Route::get('/favourite/{product_code}/{email}', [FavouriteController::class, 'AddFavourite']);
+Route::get('/favouritelist/{email}', [FavouriteController::class, 'FavouriteList']);
+Route::get('/favouriteremove/{product_code}/{email}', [FavouriteController::class, 'FavouriteRemove']);
+
 
 //Laravel Passport
 Route::post('/login', [AuthController::class, 'Login']);
