@@ -54,7 +54,6 @@ Route::get('/similar/{subcategory}', [ProductListController::class, 'SimilarProd
 Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
 
 Route::post('/addtocart', [ProductCartController::class, 'addToCart']);
-Route::get('/cartcount/{product_code}', [ProductCartController::class, 'CartCount']);
 
 Route::get('/orderlistbyuser/{email}', [ProductCartController::class, 'OrderListByUser']);
 
@@ -62,6 +61,12 @@ Route::get('/favourite/{product_code}/{email}', [FavouriteController::class, 'Ad
 Route::get('/favouritelist/{email}', [FavouriteController::class, 'FavouriteList']);
 Route::get('/favouriteremove/{product_code}/{email}', [FavouriteController::class, 'FavouriteRemove']);
 
+//Cart
+Route::get('/cartlist/{email}', [ProductCartController::class, 'CartList']);
+Route::get('/removefromcart/{id}', [ProductCartController::class, 'RemoveCartList']);
+
+Route::get('/cartcount/{email}', [ProductCartController::class, 'CartCount']);
+Route::post('/cartorder', [ProductCartController::class, 'CartOrder']);
 
 //Laravel Passport
 Route::post('/login', [AuthController::class, 'Login']);

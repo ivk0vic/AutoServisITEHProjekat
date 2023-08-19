@@ -16,7 +16,6 @@ class DetaljnijiPrikaz extends Component {
         super();
         this.state = {
             previewImg: "0",
-
             productCode: null,
             addToCart: "Add To Cart",
             PageRefreshStatus: false,
@@ -31,10 +30,13 @@ class DetaljnijiPrikaz extends Component {
 
     addToCart = () => {
         let productCode = this.state.productCode;
+        let email = localStorage.getItem("email");
 
         this.setState({ addToCart: "Adding..." });
         let MyFormData = new FormData();
+
         MyFormData.append("product_code", productCode);
+        MyFormData.append("email", email);
 
         axios
             .post(AppURL.addToCart, MyFormData)
@@ -59,6 +61,34 @@ class DetaljnijiPrikaz extends Component {
                 this.setState({ addToCart: "Add To Cart" });
             });
     };
+
+    addToFav = () => {
+        this.setState({ addToFav: "Adding..." });
+        let productCode = this.state.productCode;
+        let email = localStorage.getItem("email");
+
+        axios
+            .get(AppURL.AddFavourite(productCode, email))
+            .then((response) => {
+                if (response.data === 1) {
+                    cogoToast.success("Product is now in Favourites", {
+                        position: "top-right",
+                    });
+                    this.setState({ addToFav: "Favourite" });
+                } else {
+                    cogoToast.error("Error adding to favourites! 1", {
+                        position: "top-right",
+                    });
+                    this.setState({ addToFav: "Favourite" });
+                }
+            })
+            .catch((error) => {
+                cogoToast.error("Error adding to favourites! 2", {
+                    position: "top-right",
+                });
+                this.setState({ addToFav: "Favourite" });
+            });
+    }; // end ADD TO FAV
 
     PageRefresh = () => {
         if (this.state.PageRefreshStatus === true) {
@@ -278,11 +308,7 @@ class DetaljnijiPrikaz extends Component {
                                             <i className="fa fa-shopping-cart"></i>{" "}
                                             {this.state.addToCart}{" "}
                                         </button>
-                                        <button className="btn btn-primary m-1">
-                                            {" "}
-                                            <i className="fa fa-car"></i> Order
-                                            Now
-                                        </button>
+
                                         <button
                                             onClick={this.addToFav}
                                             className="btn btn-primary m-1"

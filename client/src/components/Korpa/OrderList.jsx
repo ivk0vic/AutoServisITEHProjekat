@@ -70,14 +70,9 @@ export class OrderList extends Component {
                             Price = {ProductList.unit_price} x{" "}
                             {ProductList.quantity} = {ProductList.total_price}$
                         </h6>
-                        <h6>Stauts = {ProductList.order_status} </h6>
+                        <h6>Status = {ProductList.order_status} </h6>
                     </Col>
-                    <Button
-                        onClick={this.handleShow}
-                        className="btn btn-danger"
-                    >
-                        Post Review{" "}
-                    </Button>
+
                     <hr></hr>
                 </div>
             );

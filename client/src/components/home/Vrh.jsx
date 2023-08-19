@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+
+import HomeSlajd from "./HomeSlajd";
+import Meni from "./Meni";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import SliderLoading from "../PlaceHolder/SliderLoading";
-import Meni from "./Meni";
-import HomeSlajd from "./HomeSlajd";
 
 class Vrh extends Component {
     constructor() {
@@ -21,17 +22,17 @@ class Vrh extends Component {
         axios
             .get(AppURL.AllCategoryDetails)
             .then((response) => {
-                this.setState({
-                    SliderData: response.data,
-                    isLoading: "d-none",
-                    mainDiv: "",
-                });
+                this.setState({ MenuData: response.data });
             })
             .catch((error) => {});
         axios
             .get(AppURL.AllSlider)
             .then((response) => {
-                this.setState({ SliderData: response.data });
+                this.setState({
+                    SliderData: response.data,
+                    isLoading: "d-none",
+                    mainDiv: "",
+                });
             })
             .catch((error) => {});
     }

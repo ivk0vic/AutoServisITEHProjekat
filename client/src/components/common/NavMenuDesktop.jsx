@@ -4,7 +4,6 @@ import Logo from "../../assets/images/logo.jpg";
 import Bars from "../../assets/images/bars.png";
 import { Link, Redirect } from "react-router-dom";
 import MeniSvi from "../home/MeniSvi";
-
 import axios from "axios";
 import AppURL from "../../api/AppURL";
 
@@ -106,20 +105,10 @@ class NavMenuDesktop extends Component {
                 <div>
                     <Link to="/favourite" className="btn">
                         <i className="fa h4 fa-heart"></i>
-                        <sup>
-                            <span className="badge text-white bg-danger">
-                                3
-                            </span>
-                        </sup>
                     </Link>
 
                     <Link to="/notification" className="btn">
                         <i className="fa h4 fa-bell"></i>
-                        <sup>
-                            <span className="badge text-white bg-danger">
-                                5
-                            </span>
-                        </sup>
                     </Link>
 
                     <Link to="/login" className="h4 btn">

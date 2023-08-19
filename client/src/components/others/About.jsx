@@ -5,6 +5,7 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { Link } from "react-router-dom";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 class About extends Component {
     constructor() {

@@ -27,7 +27,7 @@ export class Purchase extends Component {
                 .then((response) => {
                     let StatusCode = response.status;
                     if (StatusCode == 200) {
-                        let JsonData = response.data[0]["parchase_guide"];
+                        let JsonData = response.data[0]["purchase_guide"];
                         this.setState({
                             purchase: JsonData,
                             loaderDiv: "d-none",

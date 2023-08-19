@@ -29,6 +29,7 @@ class UserLogin extends Component {
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("email", this.state.email);
+
                 this.setState({ loggedIn: true });
                 this.props.setUser(response.data.user);
             })
@@ -105,7 +106,7 @@ class UserLogin extends Component {
                                             {" "}
                                             <b> Forget My Password? </b>
                                             <Link to="/forget">
-                                                <b> Froget Password </b>{" "}
+                                                <b> Forget Password </b>{" "}
                                             </Link>{" "}
                                         </p>
                                         <p>
