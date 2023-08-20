@@ -6,6 +6,10 @@ class SliderLoading extends Component {
 
         return (
             <div className={isLoading}>
+                <div className="section-title text-center mb-55">
+                    <h2>Učitavanje...</h2>
+                </div>
+
                 <div className="row">
                     <div className="col-3">
                         <div class="ph-row">

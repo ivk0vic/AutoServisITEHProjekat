@@ -8,8 +8,11 @@ class IzdvojenoLoading extends Component {
             <div className={isLoading}>
                 <Container className="text-center" fluid={true}>
                     <div className="section-title text-center mb-55">
-                        <h2>FEATURED PRODUCT</h2>
-                        <p>Some Of Our Exclusive Collection, You May Like</p>
+                        <h2>Veliki Servis Automobila</h2>
+                        <p>
+                            Odaberi svoj model automobila za koji možeš
+                            rezervisati servis!
+                        </p>
                     </div>
 
                     <div className="row">

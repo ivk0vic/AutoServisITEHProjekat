@@ -5,6 +5,8 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { Link } from "react-router-dom";
 
 export class Purchase extends Component {
     constructor() {
@@ -58,6 +60,19 @@ export class Purchase extends Component {
         return (
             <Fragment>
                 <Container>
+                    <div className="breadbody">
+                        <Breadcrumb>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/"> Home </Link>{" "}
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/purchase"> Purchase </Link>{" "}
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+
                     <Row className="p-2">
                         <Col
                             className="shadow-sm bg-white mt-2"
@@ -100,7 +115,7 @@ export class Purchase extends Component {
 
                             <div className={this.state.mainDiv}>
                                 <h4 className="section-title-login">
-                                    Purchase Page{" "}
+                                    Rezervacija{" "}
                                 </h4>
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.purchase)}

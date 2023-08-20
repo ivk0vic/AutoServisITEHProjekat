@@ -11,6 +11,7 @@ class OmiljenoPage extends Component {
     }
 
     render() {
+        const User = this.props.user;
         return (
             <Fragment>
                 <div className="Desktop">
@@ -21,7 +22,7 @@ class OmiljenoPage extends Component {
                     <NavMenuMobile />
                 </div>
 
-                <Omiljeno />
+                <Omiljeno user={User} />
 
                 <div className="Desktop">
                     <FooterDesktop />

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import AppURL from "../api/AppURL";
 import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
@@ -7,7 +8,6 @@ import DetaljnijiPrikaz from "../components/DetaljnijiPrikaz/DetaljnijiPrikaz";
 import Predlozeno from "../components/DetaljnijiPrikaz/Predlozeno";
 import axios from "axios";
 import SliderLoading from "../components/PlaceHolder/SliderLoading";
-import AppURL from "../api/AppURL";
 
 class DetaljnijiPrikazPage extends Component {
     constructor({ match }) {
@@ -19,8 +19,10 @@ class DetaljnijiPrikazPage extends Component {
             mainDiv: "d-none",
         };
     }
+
     componentDidMount() {
         window.scroll(0, 0);
+
         axios
             .get(AppURL.ProductDetails(this.state.code))
             .then((response) => {
@@ -34,7 +36,9 @@ class DetaljnijiPrikazPage extends Component {
     }
 
     render() {
-        if (this.state.mainDiv == "d-none") {
+        const User = this.props.user;
+
+        if (this.state.mainDiv === "d-none") {
             return (
                 <Fragment>
                     <div className="Desktop">
@@ -67,8 +71,10 @@ class DetaljnijiPrikazPage extends Component {
                         <NavMenuMobile />
                     </div>
 
-                    <DetaljnijiPrikaz data={this.state.ProductData} />
-                    <Predlozeno />
+                    <DetaljnijiPrikaz
+                        data={this.state.ProductData}
+                        user={User}
+                    />
 
                     <div className="Desktop">
                         <FooterDesktop />

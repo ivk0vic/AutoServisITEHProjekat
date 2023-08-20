@@ -45,7 +45,10 @@ class Novo extends Component {
             if (NewList.special_price == "na") {
                 return (
                     <div>
-                        <Link to={"/productdetails/" + NewList.id}>
+                        <Link
+                            className="text-link"
+                            to={"/productdetails/" + NewList.id}
+                        >
                             <Card className="image-box card">
                                 <img className="center" src={NewList.image} />
                                 <Card.Body>
@@ -63,7 +66,10 @@ class Novo extends Component {
             } else {
                 return (
                     <div>
-                        <Link to={"/productdetails/" + NewList.id}>
+                        <Link
+                            className="text-link"
+                            to={"/productdetails/" + NewList.id}
+                        >
                             <Card className="image-box card">
                                 <img className="center" src={NewList.image} />
                                 <Card.Body>
@@ -91,7 +97,7 @@ class Novo extends Component {
             speed: 500,
             autoplay: true,
             autoplaySpeed: 3000,
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             initialSlide: 0,
             arrows: false,
@@ -99,7 +105,7 @@ class Novo extends Component {
                 {
                     breakpoint: 1024,
                     settings: {
-                        slidesToShow: 4,
+                        slidesToShow: 3,
                         slidesToScroll: 1,
                         infinite: true,
                         dots: true,
@@ -131,7 +137,7 @@ class Novo extends Component {
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
                             <h2>
-                                Parking Senzori
+                                Akumulatori
                                 <a
                                     className="btn btn-sm ml-2 site-btn"
                                     onClick={this.previous}
@@ -147,8 +153,7 @@ class Novo extends Component {
                                 </a>
                             </h2>
                             <p>
-                                Ekskluzivna ponuda najmodernijih parking senzora
-                                koji se lako mogu ugraditi u Vas automobil!
+                                Najnovija ponuda akumulatora za vaš automobil!
                             </p>
                         </div>
 

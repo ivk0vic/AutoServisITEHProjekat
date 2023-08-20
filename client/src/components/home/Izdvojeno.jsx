@@ -42,7 +42,10 @@ class Izdvojeno extends Component {
                         sm={4}
                         xs={6}
                     >
-                        <Link to={"/productdetails/" + FeaturedList.id}>
+                        <Link
+                            className="text-link"
+                            to={"/productdetails/" + FeaturedList.id}
+                        >
                             <Card className="image-box card">
                                 <img
                                     className="center"
@@ -71,7 +74,10 @@ class Izdvojeno extends Component {
                         sm={4}
                         xs={6}
                     >
-                        <Link to={"/productdetails/" + FeaturedList.id}>
+                        <Link
+                            className="text-link"
+                            to={"/productdetails/" + FeaturedList.id}
+                        >
                             <Card className="image-box card">
                                 <img
                                     className="center"
@@ -103,8 +109,11 @@ class Izdvojeno extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            <h2>Izdvojeno</h2>
-                            <p>Neki Tekst</p>
+                            <h2>Veliki Servis Automobila</h2>
+                            <p>
+                                Odaberi svoj model automobila za koji možeš
+                                rezervisati servis!
+                            </p>
                         </div>
 
                         <Row>{MyView}</Row>

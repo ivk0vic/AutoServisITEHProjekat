@@ -3,6 +3,8 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { Link } from "react-router-dom";
 
 class Refund extends Component {
     constructor() {
@@ -35,6 +37,19 @@ class Refund extends Component {
         return (
             <Fragment>
                 <Container>
+                    <div className="breadbody">
+                        <Breadcrumb>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/"> Home </Link>{" "}
+                            </Breadcrumb.Item>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/refund"> Refund </Link>{" "}
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+
                     <Row className="p-2">
                         <Col
                             className="shadow-sm bg-white mt-2"
@@ -77,7 +92,7 @@ class Refund extends Component {
 
                             <div className={this.state.mainDiv}>
                                 <h4 className="section-title-login">
-                                    Refund Page{" "}
+                                    Povrat novca{" "}
                                 </h4>
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.refund)}

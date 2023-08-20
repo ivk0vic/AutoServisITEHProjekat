@@ -14,6 +14,7 @@ class Kategorije extends Component {
             mainDiv: "d-none",
         };
     }
+
     componentDidMount() {
         axios
             .get(AppURL.AllCategoryDetails)
@@ -40,11 +41,14 @@ class Kategorije extends Component {
                     sm={6}
                     xs={6}
                 >
-                    <Link to={"/productcategory/" + CatList.category_name}>
+                    <Link
+                        className="text-link"
+                        to={"/productcategory/" + CatList.category_name}
+                    >
                         <Card className="h-100 w-100 text-center">
                             <Card.Body>
                                 <img
-                                    width="100px"
+                                    className="center"
                                     src={CatList.category_image}
                                 />
                                 <h5 className="category-name">
@@ -56,6 +60,7 @@ class Kategorije extends Component {
                 </Col>
             );
         });
+
         return (
             <Fragment>
                 <KategorijeLoading isLoading={this.state.isLoading} />
@@ -63,8 +68,10 @@ class Kategorije extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            Kategorije
+                            <h2> Kategorije - servis i delovi</h2>
+                            <p>Odaberi šta ti je potrebno!</p>
                         </div>
+
                         <Row>{MyView}</Row>
                     </Container>
                 </div>
@@ -72,4 +79,5 @@ class Kategorije extends Component {
         );
     }
 }
+
 export default Kategorije;

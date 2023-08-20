@@ -1,17 +1,141 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-
 import ReactDOM from "react-dom";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import { Link, Redirect } from "react-router-dom";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.css";
+import InnerImageZoom from "react-inner-image-zoom";
+import Predlozeno from "./Predlozeno";
+import ReviewList from "./ReviewList";
+import cogoToast from "cogo-toast";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
 class DetaljnijiPrikaz extends Component {
     constructor() {
         super();
+        this.state = {
+            previewImg: "0",
+            datum: "",
+            productCode: null,
+            addToCart: "Rezerviši u auto servisu!",
+            PageRefreshStatus: false,
+            addToFav: "Dodaj u omiljeno",
+        };
     }
 
-    imgOnClick(event) {
+    imgOnClick = (event) => {
         let imgSrc = event.target.getAttribute("src");
-        let previewImg = document.getElementById("previewImg");
-        ReactDOM.findDOMNode(previewImg).setAttribute("src", imgSrc);
+        this.setState({ previewImg: imgSrc });
+    };
+
+    addToCart = () => {
+        let productCode = this.state.productCode;
+        let email = localStorage.getItem("email");
+        let datum = this.state.datum;
+
+        let MyFormData = new FormData();
+
+        if (datum.length === 0) {
+            cogoToast.error("Unesite datum!", {
+                position: "top-right",
+            });
+        } else {
+            this.setState({ addToCart: "Rezervisanje i dodavanje u korpu..." });
+
+            MyFormData.append("product_code", productCode);
+            MyFormData.append("datum", datum);
+            MyFormData.append("email", email);
+
+            axios
+                .post(AppURL.addToCart, MyFormData)
+                .then((response) => {
+                    if (response.data === 1) {
+                        cogoToast.success(
+                            "Uspešna rezervacija! Potvrdi u korpi!",
+                            {
+                                position: "top-right",
+                            }
+                        );
+                        this.setState({
+                            addToCart: "Rezerviši u auto servisu!",
+                        });
+                        this.setState({ PageRefreshStatus: true });
+                    } else {
+                        cogoToast.error("Greška pri rezervisanju!", {
+                            position: "top-right",
+                        });
+                        this.setState({
+                            addToCart: "Rezerviši u auto servisu!",
+                        });
+                    }
+                })
+                .catch((error) => {
+                    cogoToast.error("Error adding the product! 2" + error, {
+                        position: "top-right",
+                    });
+                    this.setState({ addToCart: "Add To Cart" });
+                });
+        }
+    };
+
+    addToFav = () => {
+        this.setState({ addToFav: "Dodavanje..." });
+        let productCode = this.state.productCode;
+        let email = localStorage.getItem("email");
+
+        axios
+            .get(AppURL.AddFavourite(productCode, email))
+            .then((response) => {
+                if (response.data === 1) {
+                    cogoToast.success("Dodato u omiljeno!", {
+                        position: "top-right",
+                    });
+                    this.setState({ addToFav: "Dodaj u omiljeno" });
+                } else {
+                    cogoToast.error("Greška pri dodavanju u omiljeno!", {
+                        position: "top-right",
+                    });
+                    this.setState({ addToFav: "Dodaj u omiljeno" });
+                }
+            })
+            .catch((error) => {
+                cogoToast.error("Greška pri dodavanju u omiljeno! 2", {
+                    position: "top-right",
+                });
+                this.setState({ addToFav: "Dodaj u omiljeno" });
+            });
+    }; // end ADD TO FAV
+
+    datumOnChange = (event) => {
+        let datum = event.target.value;
+        this.setState({ datum: datum });
+    };
+
+    PageRefresh = () => {
+        if (this.state.PageRefreshStatus === true) {
+            let URL = window.location;
+            return <Redirect to={URL} />;
+        }
+    };
+
+    PriceOption(price, special_price) {
+        if (special_price == "na") {
+            return (
+                <p className="product-price-on-card">
+                    {" "}
+                    Price : {price} dinara{" "}
+                </p>
+            );
+        } else {
+            return (
+                <p className="product-price-on-card">
+                    Price :{" "}
+                    <strike className="text-secondary">{price} dinara </strike>{" "}
+                    {special_price} dinara!
+                </p>
+            );
+        }
     }
 
     render() {
@@ -21,6 +145,10 @@ class DetaljnijiPrikaz extends Component {
         let category = ProductAllData["productList"][0]["category"];
         let subcategory = ProductAllData["productList"][0]["subcategory"];
         let image = ProductAllData["productList"][0]["image"];
+
+        if (this.state.previewImg === "0") {
+            this.setState({ previewImg: image });
+        }
 
         let price = ProductAllData["productList"][0]["price"];
         let product_code = ProductAllData["productList"][0]["product_code"];
@@ -32,8 +160,6 @@ class DetaljnijiPrikaz extends Component {
         let image_two = ProductAllData["productDetails"][0]["image_two"];
         let image_three = ProductAllData["productDetails"][0]["image_three"];
         let image_four = ProductAllData["productDetails"][0]["image_four"];
-        let color = ProductAllData["productDetails"][0]["color"];
-        let size = ProductAllData["productDetails"][0]["size"];
 
         let product_id = ProductAllData["productDetails"][0]["product_id"];
         let short_description =
@@ -41,9 +167,53 @@ class DetaljnijiPrikaz extends Component {
         let long_description =
             ProductAllData["productDetails"][0]["long_description"];
 
+        if (this.state.productCode === null) {
+            this.setState({ productCode: product_code });
+        }
+
         return (
             <Fragment>
                 <Container fluid={true} className="BetweenTwoSection">
+                    <div className="breadbody">
+                        <Breadcrumb>
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to="/"> Home </Link>{" "}
+                            </Breadcrumb.Item>
+
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to={"/productcategory/" + category}>
+                                    {" "}
+                                    {category}{" "}
+                                </Link>{" "}
+                            </Breadcrumb.Item>
+
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link
+                                    to={
+                                        "/productsubcategory/" +
+                                        category +
+                                        "/" +
+                                        subcategory
+                                    }
+                                >
+                                    {" "}
+                                    {subcategory}{" "}
+                                </Link>{" "}
+                            </Breadcrumb.Item>
+
+                            <Breadcrumb.Item>
+                                {" "}
+                                <Link to={"/productdetails/" + product_id}>
+                                    {" "}
+                                    {title}{" "}
+                                </Link>{" "}
+                            </Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+
                     <Row className="p-2">
                         <Col
                             className="shadow-sm bg-white pb-3 mt-4"
@@ -60,11 +230,14 @@ class DetaljnijiPrikaz extends Component {
                                     sm={12}
                                     xs={12}
                                 >
-                                    <img
-                                        id="previewImg"
-                                        className="bigimage"
-                                        src={image_one}
+                                    <InnerImageZoom
+                                        className="detailimage"
+                                        zoomScale={1.8}
+                                        zoomType={"hover"}
+                                        src={this.state.previewImg}
+                                        zoomSrc={this.state.previewImg}
                                     />
+
                                     <Container className="my-3">
                                         <Row>
                                             <Col
@@ -134,68 +307,82 @@ class DetaljnijiPrikaz extends Component {
                                         {" "}
                                         {short_description}{" "}
                                     </h6>
-                                    <div className="input-group">
-                                        <div className="Product-price-card d-inline ">
-                                            Reguler Price ${price}
-                                        </div>
-                                        <div className="Product-price-card d-inline ">
-                                            50% Discount
-                                        </div>
-                                        <div className="Product-price-card d-inline ">
-                                            New Price ${special_price}
-                                        </div>
-                                    </div>
+
+                                    {this.PriceOption(price, special_price)}
+
                                     <h6 className="mt-2">
-                                        Category : <b>{category}</b>{" "}
+                                        Kategorija : <b>{category}</b>{" "}
                                     </h6>
 
                                     <h6 className="mt-2">
-                                        SubCategory : <b>{subcategory}</b>
+                                        Podkategorija : <b>{subcategory}</b>
                                     </h6>
 
                                     <h6 className="mt-2">
-                                        Brand : <b>{brand}</b>
+                                        Brend : <b>{brand}</b>
                                     </h6>
 
                                     <h6 className="mt-2">
-                                        Product Code : <b>{product_code}</b>
+                                        Kod : <b>{product_code}</b>
                                     </h6>
 
                                     <div className="">
-                                        <h6 className="mt-2">
-                                            {" "}
-                                            Choose Quantity{" "}
-                                        </h6>
-                                        <select className="form-control form-select">
-                                            <option>Choose Quantity</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                            <option value="07">07</option>
-                                            <option value="08">08</option>
-                                            <option value="09">09</option>
-                                            <option value="10">10</option>
+                                        <h6 className="mt-2"> </h6>
+                                        <select
+                                            onChange={this.datumOnChange}
+                                            className="form-control form-select"
+                                        >
+                                            <option>Odaberi datum:</option>
+                                            <option value="21. Avgust 2023.">
+                                                21. Avgust 2023.
+                                            </option>
+                                            <option value="29. Avgust 2023.">
+                                                29. Avgust 2023.
+                                            </option>
+                                            <option value="07. Septembar 2023.">
+                                                07. Septembar 2023.
+                                            </option>
+                                            <option value="10. Septembar 2023.">
+                                                10. Septembar 2023.
+                                            </option>
+                                            <option value="15. Septembar 2023.">
+                                                15. Septembar 2023.
+                                            </option>
+                                            <option value="22. Septembar 2023.">
+                                                22. Septembar 2023.
+                                            </option>
+                                            <option value="27. Septembar 2023.">
+                                                27. Septembar 2023.
+                                            </option>
+                                            <option value="30. Septembar 2023.">
+                                                30. Septembar 2023.
+                                            </option>
+                                            <option value="01. Oktobar 2023.">
+                                                01. Oktobar 2023.
+                                            </option>
+                                            <option value="03. Oktobar 2023.">
+                                                03. Oktobar 2023.
+                                            </option>
                                         </select>
                                     </div>
 
                                     <div className="input-group mt-3">
-                                        <button className="btn site-btn m-1 ">
+                                        <button
+                                            onClick={this.addToCart}
+                                            className="btn site-btn m-1 "
+                                        >
                                             {" "}
-                                            <i className="fa fa-shopping-cart"></i>{" "}
-                                            Add To Cart
+                                            <i className="fa fa-flag  "></i>{" "}
+                                            {this.state.addToCart}{" "}
                                         </button>
-                                        <button className="btn btn-primary m-1">
-                                            {" "}
-                                            <i className="fa fa-car"></i> Order
-                                            Now
-                                        </button>
-                                        <button className="btn btn-primary m-1">
+
+                                        <button
+                                            onClick={this.addToFav}
+                                            className="btn btn-primary m-1"
+                                        >
                                             {" "}
                                             <i className="fa fa-heart"></i>{" "}
-                                            Favourite
+                                            {this.state.addToFav}{" "}
                                         </button>
                                     </div>
                                 </Col>
@@ -203,70 +390,21 @@ class DetaljnijiPrikaz extends Component {
 
                             <Row>
                                 <Col className="" md={6} lg={6} sm={12} xs={12}>
-                                    <h6 className="mt-2">DETAILS</h6>
+                                    <h6 className="mt-2">Detalji:</h6>
                                     <p> {long_description} </p>
                                 </Col>
 
                                 <Col className="" md={6} lg={6} sm={12} xs={12}>
-                                    <h6 className="mt-2">REVIEWS</h6>
-                                    <p className=" p-0 m-0">
-                                        <span className="Review-Title">
-                                            Kazi Ariyan
-                                        </span>{" "}
-                                        <span className="text-success">
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                        </span>{" "}
-                                    </p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat.
-                                    </p>
-
-                                    <p className=" p-0 m-0">
-                                        <span className="Review-Title">
-                                            Kazi Ariyan
-                                        </span>{" "}
-                                        <span className="text-success">
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                        </span>{" "}
-                                    </p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat.
-                                    </p>
-
-                                    <p className=" p-0 m-0">
-                                        <span className="Review-Title">
-                                            Kazi Ariyan
-                                        </span>{" "}
-                                        <span className="text-success">
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                            <i className="fa fa-star"></i>{" "}
-                                        </span>{" "}
-                                    </p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetuer
-                                        adipiscing elit, sed diam nonummy nibh
-                                        euismod tincidunt ut laoreet dolore
-                                        magna aliquam erat volutpat.
-                                    </p>
+                                    <ReviewList code={product_id} />
                                 </Col>
                             </Row>
                         </Col>
                     </Row>
                 </Container>
+
+                <Predlozeno subcategory={subcategory} />
+
+                {this.PageRefresh()}
             </Fragment>
         );
     }

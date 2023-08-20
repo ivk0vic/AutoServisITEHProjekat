@@ -21,7 +21,11 @@ class AboutPage extends Component {
                     <NavMenuMobile />
                 </div>
 
-                <About />
+                <div className="row">
+                    <div>
+                        <About />
+                    </div>
+                </div>
 
                 <div className="Desktop">
                     <FooterDesktop />

@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+
+import HomeSlajd from "./HomeSlajd";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import SliderLoading from "../PlaceHolder/SliderLoading";
-import Meni from "./Meni";
-import HomeSlajd from "./HomeSlajd";
 
 class Vrh extends Component {
     constructor() {
@@ -21,17 +21,17 @@ class Vrh extends Component {
         axios
             .get(AppURL.AllCategoryDetails)
             .then((response) => {
-                this.setState({
-                    SliderData: response.data,
-                    isLoading: "d-none",
-                    mainDiv: "",
-                });
+                this.setState({ MenuData: response.data });
             })
             .catch((error) => {});
         axios
             .get(AppURL.AllSlider)
             .then((response) => {
-                this.setState({ SliderData: response.data });
+                this.setState({
+                    SliderData: response.data,
+                    isLoading: "d-none",
+                    mainDiv: "",
+                });
             })
             .catch((error) => {});
     }
@@ -43,13 +43,14 @@ class Vrh extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="p-0 m-0 overflow-hidden" fluid={true}>
                         <Row>
-                            <Col lg={3} md={3} sm={12}>
-                                <Meni data={this.state.MenuData} />
-                            </Col>
-
-                            <Col lg={9} md={9} sm={12}>
-                                <HomeSlajd data={this.state.SliderData} />
-                            </Col>
+                            <div className="section-title text-center">
+                                <h2>Dobrodošli u Auto Servis</h2>
+                                <p>
+                                    Projekat razvijen uz pomoć React i Laravel
+                                    framework-a.
+                                </p>
+                            </div>
+                            <HomeSlajd data={this.state.SliderData} />
                         </Row>
                     </Container>
                 </div>

@@ -1,18 +1,35 @@
 import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AppURL from "../../api/AppURL";
+import axios from "axios";
 
 class Predlozeno extends Component {
-    render() {
-        return (
-            <Fragment>
-                <Container className="text-center" fluid={true}>
-                    <div className="section-title text-center mb-55">
-                        <h2> Mozda zelis i ovo da pogledas </h2>
-                        <p>Izdvojeno samo za tebe</p>
-                    </div>
+    constructor() {
+        super();
+        this.state = {
+            ProductData: [],
+        };
+    }
 
-                    <Row>
+    componentDidMount() {
+        let subcategory = this.props.subcategory;
+
+        axios
+            .get(AppURL.SimilarProduct(subcategory))
+            .then((response) => {
+                this.setState({ ProductData: response.data });
+            })
+            .catch((error) => {});
+    }
+
+    render() {
+        const MyList = this.state.ProductData;
+
+        if (MyList.length > 0) {
+            const MyView = MyList.map((ProductList, i) => {
+                if (ProductList.special_price == "na") {
+                    return (
                         <Col
                             className="p-1"
                             key={1}
@@ -22,24 +39,29 @@ class Predlozeno extends Component {
                             sm={4}
                             xs={6}
                         >
-                            <Link to="/productdetails">
+                            <Link
+                                className="text-link"
+                                to={"/productdetails/" + ProductList.id}
+                            >
                                 <Card className="image-box card">
                                     <img
                                         className="center"
-                                        src="https://www.autoservis-line.com/images/pages/autoline-servis-bmw.jpg"
+                                        src={ProductList.image}
                                     />
                                     <Card.Body>
                                         <p className="product-name-on-card">
-                                            Auto servis za BMW vozila
+                                            {ProductList.title}
                                         </p>
                                         <p className="product-price-on-card">
-                                            Cena: 150€
+                                            Price : {ProductList.price} dinara
                                         </p>
                                     </Card.Body>
                                 </Card>
                             </Link>
                         </Col>
-
+                    );
+                } else {
+                    return (
                         <Col
                             className="p-1"
                             key={1}
@@ -49,125 +71,71 @@ class Predlozeno extends Component {
                             sm={4}
                             xs={6}
                         >
-                            <Card className="image-box card">
-                                <img
-                                    className="center"
-                                    src="https://www.autoservis-line.com/images/pages/autoline-servis-citroen.jpg"
-                                />
-                                <Card.Body>
-                                    <p className="product-name-on-card">
-                                        Auto servis za Citroen vozila
-                                    </p>
-                                    <p className="product-price-on-card">
-                                        Cena: 150€
-                                    </p>
-                                </Card.Body>
-                            </Card>
+                            <Link
+                                className="text-link"
+                                to={"/productdetails/" + ProductList.id}
+                            >
+                                <Card className="image-box card">
+                                    <img
+                                        className="center"
+                                        src={ProductList.image}
+                                    />
+                                    <Card.Body>
+                                        <p className="product-name-on-card">
+                                            {ProductList.title}
+                                        </p>
+                                        <p className="product-price-on-card">
+                                            Cena :{" "}
+                                            <strike className="text-secondary">
+                                                {ProductList.price} dinara
+                                            </strike>{" "}
+                                            {ProductList.special_price} dinara
+                                        </p>
+                                    </Card.Body>
+                                </Card>
+                            </Link>
                         </Col>
+                    );
+                }
+            });
 
-                        <Col
-                            className="p-1"
-                            key={1}
-                            xl={2}
-                            lg={2}
-                            md={2}
-                            sm={4}
-                            xs={6}
-                        >
-                            <Card className="image-box card">
-                                <img
-                                    className="center"
-                                    src="https://www.autoservis-line.com/images/pages/autoline-servis-fiat.jpg"
-                                />
-                                <Card.Body>
-                                    <p className="product-name-on-card">
-                                        Auto servis za Fiat vozila
-                                    </p>
-                                    <p className="product-price-on-card">
-                                        Cena: 150€
-                                    </p>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+            return (
+                <Fragment>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2> Takođe možete pogledati: </h2>
+                            <p>
+                                Slična ponuda specijalno kreirana prema vašim
+                                preferencijama
+                            </p>
+                        </div>
 
-                        <Col
-                            className="p-1"
-                            key={1}
-                            xl={2}
-                            lg={2}
-                            md={2}
-                            sm={4}
-                            xs={6}
-                        >
-                            <Card className="image-box card">
-                                <img
-                                    className="center"
-                                    src="https://www.autoservis-line.com/images/pages/autoline-servis-mercedes.jpg"
-                                />
-                                <Card.Body>
-                                    <p className="product-name-on-card">
-                                        Auto servis za Mercedes vozila
-                                    </p>
-                                    <p className="product-price-on-card">
-                                        Cena: 150€
-                                    </p>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        <Row>{MyView}</Row>
+                    </Container>
+                </Fragment>
+            );
+        } // end if conditon
+        else {
+            return (
+                <Fragment>
+                    <Container className="text-center" fluid={true}>
+                        <div className="section-title text-center mb-55">
+                            <h2> Takođe možete pogledati: </h2>
+                            <p>
+                                Slična ponuda specijalno kreirana prema vašim
+                                preferencijama
+                            </p>
+                        </div>
 
-                        <Col
-                            className="p-1"
-                            key={1}
-                            xl={2}
-                            lg={2}
-                            md={2}
-                            sm={4}
-                            xs={6}
-                        >
-                            <Card className="image-box card">
-                                <img
-                                    className="center"
-                                    src="https://www.autoservis-line.com/images/pages/autoline-servis-opel.jpg"
-                                />
-                                <Card.Body>
-                                    <p className="product-name-on-card">
-                                        Auto servis za Opel vozila
-                                    </p>
-                                    <p className="product-price-on-card">
-                                        Cena: 150€
-                                    </p>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-
-                        <Col
-                            className="p-1"
-                            key={1}
-                            xl={2}
-                            lg={2}
-                            md={2}
-                            sm={4}
-                            xs={6}
-                        >
-                            <Card className="image-box card">
-                                <img
-                                    className="center"
-                                    src="https://www.autoservis-line.com/images/pages/autoline-servis-peugeot.jpg"
-                                />
-                                <Card.Body>
-                                    <p className="product-name-on-card">
-                                        Auto servis za Peugeot vozila
-                                    </p>
-                                    <p className="product-price-on-card">
-                                        Cena: 150€
-                                    </p>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            </Fragment>
-        );
+                        <p>
+                            {" "}
+                            Nema sličnih stavki koje odgovaraju vašim
+                            preferencijama!{" "}
+                        </p>
+                    </Container>
+                </Fragment>
+            );
+        } // end else
     }
 }
 
