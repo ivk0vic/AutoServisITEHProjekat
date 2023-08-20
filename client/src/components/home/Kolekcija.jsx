@@ -48,7 +48,7 @@ class Kolekcija extends Component {
                                         {CollectionList.title}
                                     </p>
                                     <p className="product-price-on-card">
-                                        Price : ${CollectionList.price}
+                                        Price : {CollectionList.price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>
@@ -74,9 +74,9 @@ class Kolekcija extends Component {
                                     <p className="product-price-on-card">
                                         Price :{" "}
                                         <strike className="text-secondary">
-                                            ${CollectionList.price}
+                                            {CollectionList.price} dinara
                                         </strike>{" "}
-                                        ${CollectionList.special_price}
+                                        {CollectionList.special_price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>

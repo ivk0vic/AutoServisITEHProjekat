@@ -96,7 +96,7 @@ class NavMenuDesktop extends Component {
 
                     <Link to="/cart" className="cart-btn">
                         <i className="fa fa-shopping-cart"></i>{" "}
-                        {this.state.cartCount} items{" "}
+                        {this.state.cartCount} stavki{" "}
                     </Link>
                 </div>
             );

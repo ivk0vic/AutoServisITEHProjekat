@@ -26,7 +26,7 @@ class Category extends Component {
                                         {ProductList.title}
                                     </p>
                                     <p className="product-price-on-card">
-                                        Price : ${ProductList.price}
+                                        Price : {ProductList.price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>
@@ -52,9 +52,9 @@ class Category extends Component {
                                     <p className="product-price-on-card">
                                         Price :{" "}
                                         <strike className="text-secondary">
-                                            ${ProductList.price}
+                                            {ProductList.price} dinara
                                         </strike>{" "}
-                                        ${ProductList.special_price}
+                                        {ProductList.special_price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>

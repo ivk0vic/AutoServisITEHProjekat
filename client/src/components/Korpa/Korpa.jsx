@@ -38,20 +38,26 @@ class Korpa extends Component {
             .get(AppURL.RemoveCartList(id))
             .then((response) => {
                 if (response.data === 1) {
-                    cogoToast.success("Cart Item Remove", {
+                    cogoToast.success("Stavka iz korpe rezervacija izbačena!", {
                         position: "top-right",
                     });
                     this.setState({ PageRefreshStatus: true });
                 } else {
-                    cogoToast.error("Your Request is not done ! Try Aagain", {
-                        position: "top-right",
-                    });
+                    cogoToast.error(
+                        "Tvoj zahtev još nije završen! Pokušaj ponovo.",
+                        {
+                            position: "top-right",
+                        }
+                    );
                 }
             })
             .catch((error) => {
-                cogoToast.error("Your Request is not done ! Try Aagain", {
-                    position: "top-right",
-                });
+                cogoToast.error(
+                    "Tvoj zahtev još nije završen! Pokušaj ponovo.",
+                    {
+                        position: "top-right",
+                    }
+                );
             });
     }; // End Remove Item Mehtod
     PageRefresh = () => {
@@ -61,48 +67,6 @@ class Korpa extends Component {
         }
     };
 
-    ItemPlus = (id, quantity, price) => {
-        axios
-            .get(AppURL.CartItemPlus(id, quantity, price))
-            .then((response) => {
-                if (response.data === 1) {
-                    cogoToast.success("Item Quantity Increased", {
-                        position: "top-right",
-                    });
-                    this.setState({ PageRefreshStatus: true });
-                } else {
-                    cogoToast.error("Your Request is not done ! Try Aagain", {
-                        position: "top-right",
-                    });
-                }
-            })
-            .catch((error) => {
-                cogoToast.error("Your Request is not done ! Try Aagain", {
-                    position: "top-right",
-                });
-            });
-    }; // End ItemPlus Mehtod
-    ItemMinus = (id, quantity, price) => {
-        axios
-            .get(AppURL.CartItemMinus(id, quantity, price))
-            .then((response) => {
-                if (response.data === 1) {
-                    cogoToast.success("Item Quantity Decreased", {
-                        position: "top-right",
-                    });
-                    this.setState({ PageRefreshStatus: true });
-                } else {
-                    cogoToast.error("Your Request is not done ! Try Aagain", {
-                        position: "top-right",
-                    });
-                }
-            })
-            .catch((error) => {
-                cogoToast.error("Your Request is not done ! Try Aagain", {
-                    position: "top-right",
-                });
-            });
-    }; // End ItemMinus Mehtod
     cityOnChange = (event) => {
         let city = event.target.value;
         this.setState({ city: city });
@@ -154,19 +118,22 @@ class Korpa extends Component {
                 .post(AppURL.CartOrder, MyFromData)
                 .then((response) => {
                     if (response.data === 1) {
-                        cogoToast.success("Order Request Received", {
-                            position: "top-right",
-                        });
+                        cogoToast.success(
+                            "Poslat zahtev za rezervaciju! Hvala Vam puno :)",
+                            {
+                                position: "top-right",
+                            }
+                        );
                         this.setState({ PageRedirectStaus: true });
                     } else {
                         cogoToast.error(
-                            "Your Request is not done ! Try Aagain",
+                            "Tvoj zahtev još nije završen! Pokušaj ponovo.",
                             { position: "top-right" }
                         );
                     }
                 })
                 .catch((error) => {
-                    cogoToast.error("Your Request is not done ! Try Aagain", {
+                    cogoToast.error("v", {
                         position: "top-right",
                     });
                 });
