@@ -78,7 +78,7 @@ export class OrderList extends Component {
             <Fragment>
                 <Container>
                     <div className="section-title text-center mb-55">
-                        <h2> Istorija porudžbina </h2>
+                        <h2> Istorija rezervacija </h2>
                     </div>
 
                     <Card>
