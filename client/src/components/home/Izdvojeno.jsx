@@ -56,7 +56,7 @@ class Izdvojeno extends Component {
                                         {FeaturedList.title}
                                     </p>
                                     <p className="product-price-on-card">
-                                        Price : ${FeaturedList.price}
+                                        Price : {FeaturedList.price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>
@@ -90,9 +90,9 @@ class Izdvojeno extends Component {
                                     <p className="product-price-on-card">
                                         Price :{" "}
                                         <strike className="text-secondary">
-                                            ${FeaturedList.price}
+                                            {FeaturedList.price} dinara
                                         </strike>{" "}
-                                        ${FeaturedList.special_price}
+                                        {FeaturedList.special_price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>

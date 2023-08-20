@@ -56,7 +56,7 @@ class Novo extends Component {
                                         {NewList.title}
                                     </p>
                                     <p className="product-price-on-card">
-                                        Price : ${NewList.price}
+                                        Price : {NewList.price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>
@@ -79,9 +79,9 @@ class Novo extends Component {
                                     <p className="product-price-on-card">
                                         Price :{" "}
                                         <strike className="text-secondary">
-                                            ${NewList.price}
+                                            {NewList.price} dinara
                                         </strike>{" "}
-                                        ${NewList.special_price}
+                                        {NewList.special_price} dinara
                                     </p>
                                 </Card.Body>
                             </Card>
