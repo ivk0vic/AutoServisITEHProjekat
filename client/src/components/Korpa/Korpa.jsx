@@ -14,7 +14,7 @@ class Korpa extends Component {
             PageRefreshStatus: false,
             PageRedirectStaus: false,
 
-            confirmBtn: "Confirm Order",
+            confirmBtn: "PORUČI",
             city: "",
             payment: "",
             name: "",
@@ -126,15 +126,17 @@ class Korpa extends Component {
         let address = this.state.address;
         let email = this.props.user.email;
         if (city.length === 0) {
-            cogoToast.error("Please Select City", { position: "top-right" });
+            cogoToast.error("Unesite grad", { position: "top-right" });
         } else if (payment.length === 0) {
-            cogoToast.error("Please Select Payment", { position: "top-right" });
+            cogoToast.error("Unesite način plaćanja", {
+                position: "top-right",
+            });
         } else if (name.length === 0) {
-            cogoToast.error("Please Select Your Name", {
+            cogoToast.error("Unesite ime", {
                 position: "top-right",
             });
         } else if (address.length === 0) {
-            cogoToast.error("Please Select Your Address", {
+            cogoToast.error("Unesite adresu", {
                 position: "top-right",
             });
         } else {
@@ -181,7 +183,7 @@ class Korpa extends Component {
         const MyList = this.state.ProductData;
         let totalPriceSum = 0;
         const MyView = MyList.map((ProductList, i) => {
-            totalPriceSum = totalPriceSum + parseInt(ProductList.total_price);
+            totalPriceSum = totalPriceSum + parseInt(ProductList.unit_price);
             return (
                 <div>
                     <Card>
@@ -197,14 +199,10 @@ class Korpa extends Component {
                                     <h5 className="product-name">
                                         {ProductList.product_name}
                                     </h5>
-                                    <h6> Quantity = {ProductList.quantity} </h6>
-                                    <p>
-                                        {ProductList.size} | {ProductList.color}
-                                    </p>
+                                    <h6> Datum: {ProductList.datum} </h6>
+
                                     <h6>
-                                        Price = {ProductList.unit_price} x{" "}
-                                        {ProductList.quantity} ={" "}
-                                        {ProductList.total_price}$
+                                        Cena je {ProductList.unit_price} dinara.
                                     </h6>
                                 </Col>
                                 <Col md={3} lg={3} sm={12} xs={12}>
@@ -227,7 +225,7 @@ class Korpa extends Component {
             <Fragment>
                 <Container fluid={true}>
                     <div className="section-title text-center mb-55">
-                        <h2>Product Cart List</h2>
+                        <h2>Pregled korpe</h2>
                     </div>
                     <Row>
                         <Col className="p-1" lg={7} md={7} sm={12} xs={12}>
@@ -240,14 +238,15 @@ class Korpa extends Component {
                                         <div className="row">
                                             <div className="col-md-12 p-1  col-lg-12 col-sm-12 col-12">
                                                 <h5 className="Product-Name text-danger">
-                                                    Total Due: {totalPriceSum} $
+                                                    Ukupno zaduženje:{" "}
+                                                    {totalPriceSum} dinara.
                                                 </h5>
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                 <label className="form-label">
-                                                    Choose City
+                                                    Odaberi grad:
                                                 </label>
                                                 <select
                                                     onChange={this.cityOnChange}
@@ -255,35 +254,24 @@ class Korpa extends Component {
                                                 >
                                                     <option
                                                         value=""
-                                                        defaultValue={
-                                                            "Kraljevo"
-                                                        }
+                                                        defaultValue={"Beograd"}
                                                     >
-                                                        Choose
-                                                    </option>
-                                                    <option value="Kraljevo">
-                                                        Kraljevo
-                                                    </option>
-                                                    <option value="Seravica">
-                                                        Subotica{" "}
+                                                        Odaberi...
                                                     </option>
                                                     <option value="Beograd">
-                                                        Beograd{" "}
+                                                        Beograd
                                                     </option>
-                                                    <option value="Valjevo">
-                                                        Valjevo{" "}
+                                                    <option value="Novi Sad">
+                                                        Novi Sad{" "}
                                                     </option>
-                                                    <option value="Uzice">
-                                                        Uzice{" "}
-                                                    </option>
-                                                    <option value="Leskovac">
-                                                        Leskovac{" "}
+                                                    <option value="Niš">
+                                                        Niš{" "}
                                                     </option>
                                                 </select>
                                             </div>
                                             <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                 <label className="form-label">
-                                                    Choose Payment Method
+                                                    Odaberi način plaćanja
                                                 </label>
                                                 <select
                                                     onChange={
@@ -293,19 +281,19 @@ class Korpa extends Component {
                                                     className="form-control"
                                                 >
                                                     <option value="">
-                                                        Choose
+                                                        Odaberi...
                                                     </option>
-                                                    <option value="Cash On Delivery">
-                                                        Cash On Delivery
+                                                    <option value="Gotovina">
+                                                        Gotovina
                                                     </option>
-                                                    <option value="Cash On Delivery">
-                                                        Stripe
+                                                    <option value="Kartica">
+                                                        Kartica
                                                     </option>
                                                 </select>
                                             </div>
                                             <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                 <label className="form-label">
-                                                    Your Name
+                                                    Vaše ime:
                                                 </label>
                                                 <input
                                                     onChange={this.nameOnChange}
@@ -316,7 +304,7 @@ class Korpa extends Component {
                                             </div>
                                             <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                 <label className="form-label">
-                                                    Delivery Address
+                                                    Adresa:
                                                 </label>
                                                 <textarea
                                                     onChange={

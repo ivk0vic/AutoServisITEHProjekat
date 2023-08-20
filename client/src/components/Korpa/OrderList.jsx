@@ -62,14 +62,10 @@ export class OrderList extends Component {
                         <h5 className="product-name">
                             {ProductList.product_name}
                         </h5>
-                        <h6> Quantity = {ProductList.quantity} </h6>
-                        <p>
-                            {ProductList.size} | {ProductList.color}
-                        </p>
-                        <h6>
-                            Price = {ProductList.unit_price} x{" "}
-                            {ProductList.quantity} = {ProductList.total_price}$
-                        </h6>
+
+                        <h6>Cena = {ProductList.unit_price}</h6>
+
+                        <h6>Datum: {ProductList.datum}</h6>
                         <h6>Status = {ProductList.order_status} </h6>
                     </Col>
 
@@ -82,7 +78,7 @@ export class OrderList extends Component {
             <Fragment>
                 <Container>
                     <div className="section-title text-center mb-55">
-                        <h2>Order History </h2>
+                        <h2> Istorija porudžbina </h2>
                     </div>
 
                     <Card>
@@ -95,7 +91,8 @@ export class OrderList extends Component {
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <h6>
-                            <i className="fa fa-bell"></i> Post your review:{" "}
+                            <i className="fa fa-bell"></i> Postavi svoju
+                            recenziju!{" "}
                         </h6>
                     </Modal.Header>
                     <Modal.Body>

@@ -16,10 +16,11 @@ class DetaljnijiPrikaz extends Component {
         super();
         this.state = {
             previewImg: "0",
+            datum: "",
             productCode: null,
-            addToCart: "Add To Cart",
+            addToCart: "Rezerviši u auto servisu!",
             PageRefreshStatus: false,
-            addToFav: "Favourite",
+            addToFav: "Dodaj u omiljeno",
         };
     }
 
@@ -31,39 +32,55 @@ class DetaljnijiPrikaz extends Component {
     addToCart = () => {
         let productCode = this.state.productCode;
         let email = localStorage.getItem("email");
+        let datum = this.state.datum;
 
-        this.setState({ addToCart: "Adding..." });
         let MyFormData = new FormData();
 
-        MyFormData.append("product_code", productCode);
-        MyFormData.append("email", email);
-
-        axios
-            .post(AppURL.addToCart, MyFormData)
-            .then((response) => {
-                if (response.data === 1) {
-                    cogoToast.success("Product Added Successfully", {
-                        position: "top-right",
-                    });
-                    this.setState({ addToCart: "Add To Cart" });
-                    this.setState({ PageRefreshStatus: true });
-                } else {
-                    cogoToast.error("Error adding the product! 1", {
-                        position: "top-right",
-                    });
-                    this.setState({ addToCart: "Add To Cart" });
-                }
-            })
-            .catch((error) => {
-                cogoToast.error("Error adding the product! 2", {
-                    position: "top-right",
-                });
-                this.setState({ addToCart: "Add To Cart" });
+        if (datum.length === 0) {
+            cogoToast.error("Unesite datum!", {
+                position: "top-right",
             });
+        } else {
+            this.setState({ addToCart: "Rezervisanje i dodavanje u korpu..." });
+
+            MyFormData.append("product_code", productCode);
+            MyFormData.append("datum", datum);
+            MyFormData.append("email", email);
+
+            axios
+                .post(AppURL.addToCart, MyFormData)
+                .then((response) => {
+                    if (response.data === 1) {
+                        cogoToast.success(
+                            "Uspešna rezervacija! Potvrdi u korpi!",
+                            {
+                                position: "top-right",
+                            }
+                        );
+                        this.setState({
+                            addToCart: "Rezerviši u auto servisu!",
+                        });
+                        this.setState({ PageRefreshStatus: true });
+                    } else {
+                        cogoToast.error("Greška pri rezervisanju!", {
+                            position: "top-right",
+                        });
+                        this.setState({
+                            addToCart: "Rezerviši u auto servisu!",
+                        });
+                    }
+                })
+                .catch((error) => {
+                    cogoToast.error("Error adding the product! 2" + error, {
+                        position: "top-right",
+                    });
+                    this.setState({ addToCart: "Add To Cart" });
+                });
+        }
     };
 
     addToFav = () => {
-        this.setState({ addToFav: "Adding..." });
+        this.setState({ addToFav: "Dodavanje..." });
         let productCode = this.state.productCode;
         let email = localStorage.getItem("email");
 
@@ -71,24 +88,29 @@ class DetaljnijiPrikaz extends Component {
             .get(AppURL.AddFavourite(productCode, email))
             .then((response) => {
                 if (response.data === 1) {
-                    cogoToast.success("Product is now in Favourites", {
+                    cogoToast.success("Dodato u omiljeno!", {
                         position: "top-right",
                     });
-                    this.setState({ addToFav: "Favourite" });
+                    this.setState({ addToFav: "Dodaj u omiljeno" });
                 } else {
-                    cogoToast.error("Error adding to favourites! 1", {
+                    cogoToast.error("Greška pri dodavanju u omiljeno!", {
                         position: "top-right",
                     });
-                    this.setState({ addToFav: "Favourite" });
+                    this.setState({ addToFav: "Dodaj u omiljeno" });
                 }
             })
             .catch((error) => {
-                cogoToast.error("Error adding to favourites! 2", {
+                cogoToast.error("Greška pri dodavanju u omiljeno! 2", {
                     position: "top-right",
                 });
-                this.setState({ addToFav: "Favourite" });
+                this.setState({ addToFav: "Dodaj u omiljeno" });
             });
     }; // end ADD TO FAV
+
+    datumOnChange = (event) => {
+        let datum = event.target.value;
+        this.setState({ datum: datum });
+    };
 
     PageRefresh = () => {
         if (this.state.PageRefreshStatus === true) {
@@ -99,13 +121,18 @@ class DetaljnijiPrikaz extends Component {
 
     PriceOption(price, special_price) {
         if (special_price == "na") {
-            return <p className="product-price-on-card"> Price : {price}$ </p>;
+            return (
+                <p className="product-price-on-card">
+                    {" "}
+                    Price : {price} dinara{" "}
+                </p>
+            );
         } else {
             return (
                 <p className="product-price-on-card">
                     Price :{" "}
-                    <strike className="text-secondary">{price}$ </strike>{" "}
-                    {special_price}$
+                    <strike className="text-secondary">{price} dinara </strike>{" "}
+                    {special_price} dinara!
                 </p>
             );
         }
@@ -284,20 +311,60 @@ class DetaljnijiPrikaz extends Component {
                                     {this.PriceOption(price, special_price)}
 
                                     <h6 className="mt-2">
-                                        Category : <b>{category}</b>{" "}
+                                        Kategorija : <b>{category}</b>{" "}
                                     </h6>
 
                                     <h6 className="mt-2">
-                                        SubCategory : <b>{subcategory}</b>
+                                        Podkategorija : <b>{subcategory}</b>
                                     </h6>
 
                                     <h6 className="mt-2">
-                                        Brand : <b>{brand}</b>
+                                        Brend : <b>{brand}</b>
                                     </h6>
 
                                     <h6 className="mt-2">
-                                        Product Code : <b>{product_code}</b>
+                                        Kod : <b>{product_code}</b>
                                     </h6>
+
+                                    <div className="">
+                                        <h6 className="mt-2"> </h6>
+                                        <select
+                                            onChange={this.datumOnChange}
+                                            className="form-control form-select"
+                                        >
+                                            <option>Odaberi datum:</option>
+                                            <option value="21. Avgust 2023.">
+                                                21. Avgust 2023.
+                                            </option>
+                                            <option value="29. Avgust 2023.">
+                                                29. Avgust 2023.
+                                            </option>
+                                            <option value="07. Septembar 2023.">
+                                                07. Septembar 2023.
+                                            </option>
+                                            <option value="10. Septembar 2023.">
+                                                10. Septembar 2023.
+                                            </option>
+                                            <option value="15. Septembar 2023.">
+                                                15. Septembar 2023.
+                                            </option>
+                                            <option value="22. Septembar 2023.">
+                                                22. Septembar 2023.
+                                            </option>
+                                            <option value="27. Septembar 2023.">
+                                                27. Septembar 2023.
+                                            </option>
+                                            <option value="30. Septembar 2023.">
+                                                30. Septembar 2023.
+                                            </option>
+                                            <option value="01. Oktobar 2023.">
+                                                01. Oktobar 2023.
+                                            </option>
+                                            <option value="03. Oktobar 2023.">
+                                                03. Oktobar 2023.
+                                            </option>
+                                        </select>
+                                    </div>
 
                                     <div className="input-group mt-3">
                                         <button
@@ -305,7 +372,7 @@ class DetaljnijiPrikaz extends Component {
                                             className="btn site-btn m-1 "
                                         >
                                             {" "}
-                                            <i className="fa fa-shopping-cart"></i>{" "}
+                                            <i className="fa fa-flag  "></i>{" "}
                                             {this.state.addToCart}{" "}
                                         </button>
 
@@ -323,7 +390,7 @@ class DetaljnijiPrikaz extends Component {
 
                             <Row>
                                 <Col className="" md={6} lg={6} sm={12} xs={12}>
-                                    <h6 className="mt-2">DETAILS</h6>
+                                    <h6 className="mt-2">Detalji:</h6>
                                     <p> {long_description} </p>
                                 </Col>
 

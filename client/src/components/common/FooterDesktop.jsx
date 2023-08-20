@@ -15,7 +15,7 @@ export class FooterDesktop extends Component {
             address: "",
             android_app_link: "",
             ios_app_link: "",
-            facbook_link: "",
+            facebook_link: "",
             twitter_link: "",
             instagram_link: "",
             copyright_text: "",
@@ -35,7 +35,7 @@ export class FooterDesktop extends Component {
                         address: JsonData["address"],
                         android_app_link: JsonData["android_app_link"],
                         ios_app_link: JsonData["ios_app_link"],
-                        facbook_link: JsonData["facbook_link"],
+                        facebook_link: JsonData["facebook_link"],
                         twitter_link: JsonData["twitter_link"],
                         instagram_link: JsonData["instagram_link"],
                         copyright_text: JsonData["copyright_text"],
@@ -74,10 +74,10 @@ export class FooterDesktop extends Component {
                                 {ReactHtmlParser(this.state.address)}
 
                                 <h5 className="footer-menu-title">
-                                    DRUSTVENE MREZE
+                                    DRUŠTVENE MREZE
                                 </h5>
                                 <a
-                                    href={this.state.facbook_link}
+                                    href={this.state.facebook_link}
                                     target="_blank"
                                 >
                                     <i className="fab m-1 h4 fa-facebook"></i>
@@ -115,10 +115,10 @@ export class FooterDesktop extends Component {
 
                             <Col className="p-2" lg={3} md={3} sm={6} xs={12}>
                                 <h5 className="footer-menu-title">
-                                    VISE INFORMACIJA
+                                    VIŠE INFORMACIJA
                                 </h5>
                                 <Link to="/purchase" className="footer-link">
-                                    Kako porucivati
+                                    Rezervacija
                                 </Link>
                                 <br></br>
                                 <Link to="/privacy" className="footer-link">
@@ -151,7 +151,6 @@ export class FooterDesktop extends Component {
                                     <img className="mt-2" src={Apple} />
                                 </a>
                                 <br></br>
-                                Change Your Language <br></br>
                                 <div id="google_translate_element"> </div>
                                 <br></br>
                             </Col>

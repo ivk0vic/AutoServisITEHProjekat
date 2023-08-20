@@ -43,17 +43,17 @@ export class Contact extends Component {
         let contactForm = document.getElementById("contactForm");
 
         if (message.length == 0) {
-            toast.error("Please write your message");
+            toast.error("Napiši poruku!");
         } else if (name.length == 0) {
-            toast.error("Please write down our name");
+            toast.error("Unesite ime!");
         } else if (email.length == 0) {
-            toast.error("Please write down our Email");
+            toast.error("Unesite mejl!");
         } else if (!validation.NameRegx.test(name)) {
-            toast.error("Invaid Name");
+            toast.error("Neispravno ime!");
         } else if (!validation.EmailRegx.test(email)) {
-            toast.error("Invaid Email");
+            toast.error("Neispravan Mejl!");
         } else {
-            sendBtn.innerHTML = "Sending...";
+            sendBtn.innerHTML = "Slanje...";
             let MyFormData = new FormData();
             MyFormData.append("name", name);
             MyFormData.append("email", email);
@@ -63,17 +63,17 @@ export class Contact extends Component {
                 .post(AppURL.PostContact, MyFormData)
                 .then(function (response) {
                     if (response.status == 200 && response.data == 1) {
-                        toast.success("Message Send Successfully");
-                        sendBtn.innerHTML = "Send";
+                        toast.success("Poruka uspešno poslata!");
+                        sendBtn.innerHTML = "POŠALJI";
                         contactForm.reset();
                     } else {
                         toast.error("error");
-                        sendBtn.innerHTML = "Send";
+                        sendBtn.innerHTML = "POŠALJI";
                     }
                 })
                 .catch(function (error) {
                     toast.error(error);
-                    sendBtn.innerHTML = "Send";
+                    sendBtn.innerHTML = "POŠALJI";
                 });
         }
 
@@ -82,99 +82,73 @@ export class Contact extends Component {
 
     render() {
         return (
-            <Fragment>
+            <Fragment style={{ display: "flex", justifyContent: "center" }}>
                 <Container>
-                    <Row className="p-2">
-                        <Col
-                            className="shadow-sm bg-white mt-2"
-                            md={12}
-                            lg={12}
-                            sm={12}
-                            xs={12}
-                        >
-                            <Row className="text-center">
-                                <Col
-                                    className="d-flex justify-content-center"
-                                    md={4}
-                                    lg={4}
-                                    sm={12}
-                                    xs={12}
+                    <Row className="p-2 text-center justify-content-center">
+                        <Row className="text-center">
+                            <Col className="justify-content-center">
+                                <Form
+                                    id="contactForm"
+                                    onSubmit={this.onFormSubmit}
+                                    className="onboardForm"
                                 >
-                                    <Form
-                                        id="contactForm"
-                                        onSubmit={this.onFormSubmit}
-                                        className="onboardForm"
+                                    <h4 className="section-title-login">
+                                        Kontakt{" "}
+                                    </h4>
+                                    <h6 className="section-sub-title">
+                                        Konktaktiraj nas kako bi dobio više
+                                        informacija o ponudama i servisima koje
+                                        pružamo!{" "}
+                                    </h6>
+
+                                    <input
+                                        onChange={this.nameOnChange}
+                                        className="form-control m-2"
+                                        type="text"
+                                        placeholder="Unesi svoje ime..."
+                                    />
+
+                                    <input
+                                        onChange={this.emailOnChange}
+                                        className="form-control m-2"
+                                        type="email"
+                                        placeholder="Unesi svoj mejl..."
+                                    />
+
+                                    <Form.Control
+                                        onChange={this.messageOnChange}
+                                        className="form-control m-2"
+                                        as="textarea"
+                                        rows={3}
+                                        placeholder="Poruka..."
+                                    />
+
+                                    <Button
+                                        id="sendBtn"
+                                        type="submit"
+                                        className="btn btn-block m-2 site-btn-login"
                                     >
-                                        <h4 className="section-title-login">
-                                            CONTACT US{" "}
-                                        </h4>
-                                        <h6 className="section-sub-title">
-                                            Please Contact With Us{" "}
-                                        </h6>
+                                        {" "}
+                                        POŠALJI{" "}
+                                    </Button>
+                                </Form>
+                            </Col>
 
-                                        <input
-                                            onChange={this.nameOnChange}
-                                            className="form-control m-2"
-                                            type="text"
-                                            placeholder="Enter Your Name"
-                                        />
+                            <br></br>
+                            <br></br>
 
-                                        <input
-                                            onChange={this.emailOnChange}
-                                            className="form-control m-2"
-                                            type="email"
-                                            placeholder="Enter Email"
-                                        />
-
-                                        <Form.Control
-                                            onChange={this.messageOnChange}
-                                            className="form-control m-2"
-                                            as="textarea"
-                                            rows={3}
-                                            placeholder="Message"
-                                        />
-
-                                        <Button
-                                            id="sendBtn"
-                                            type="submit"
-                                            className="btn btn-block m-2 site-btn-login"
-                                        >
-                                            {" "}
-                                            Send{" "}
-                                        </Button>
-                                    </Form>
-                                </Col>
-
-                                <Col
-                                    className="p-0 Desktop m-0"
-                                    md={4}
-                                    lg={4}
-                                    sm={6}
-                                    xs={6}
-                                >
-                                    <br></br>
-                                    <br></br>
-                                    <p className="section-title-contact">
-                                        Faculty of Organizational Sciences Jove
-                                        Ilića 154 Beograd 11000 Serbia
-                                    </p>
-
-                                    <Col
-                                        className="p-0 Desktop m-0"
-                                        md={4}
-                                        lg={4}
-                                        sm={12}
-                                        xs={12}
-                                    >
-                                        <div>
-                                            <GoogleMaps />
-                                        </div>
-                                    </Col>
-                                </Col>
-                            </Row>
-                        </Col>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                }}
+                            >
+                                <GoogleMaps />
+                            </div>
+                        </Row>
                     </Row>
                 </Container>
+
                 <ToastContainer />
             </Fragment>
         );

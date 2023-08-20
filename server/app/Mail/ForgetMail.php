@@ -31,6 +31,6 @@ class ForgetMail extends Mailable
     public function build()
     {
         $data = $this->data;
-        return $this->from('support@iteh.com')->view('forget', compact('data'))->subject('Password reset link');
+        return $this->from('projekat@iteh.com')->view('forget', compact('data'))->subject('Password reset link');
     }
 }

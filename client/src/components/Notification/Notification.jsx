@@ -59,7 +59,8 @@ class Notification extends Component {
                             <h6>{NotificationList.title}</h6>
                             <p className="py-1  px-0 text-primary m-0">
                                 <i className="fa  fa-bell"></i> Date:{" "}
-                                {NotificationList.date} | Status: Unread
+                                {NotificationList.date} | Status: Nepročitana
+                                notifikacija
                             </p>
 
                             <Button
@@ -68,7 +69,7 @@ class Notification extends Component {
                                 data-message={NotificationList.message}
                                 className="btn btn-danger"
                             >
-                                Details{" "}
+                                Detaljnije...{" "}
                             </Button>
                         </Card.Body>
                     </Card>

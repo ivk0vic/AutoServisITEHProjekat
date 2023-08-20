@@ -53,7 +53,7 @@ class Predlozeno extends Component {
                                             {ProductList.title}
                                         </p>
                                         <p className="product-price-on-card">
-                                            Price : ${ProductList.price}
+                                            Price : {ProductList.price} dinara
                                         </p>
                                     </Card.Body>
                                 </Card>
@@ -85,11 +85,11 @@ class Predlozeno extends Component {
                                             {ProductList.title}
                                         </p>
                                         <p className="product-price-on-card">
-                                            Price :{" "}
+                                            Cena :{" "}
                                             <strike className="text-secondary">
-                                                ${ProductList.price}
+                                                {ProductList.price} dinara
                                             </strike>{" "}
-                                            ${ProductList.special_price}
+                                            {ProductList.special_price} dinara
                                         </p>
                                     </Card.Body>
                                 </Card>
@@ -103,9 +103,10 @@ class Predlozeno extends Component {
                 <Fragment>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            <h2>YOU MAY ALSO LIKE </h2>
+                            <h2> Takođe možete pogledati: </h2>
                             <p>
-                                Some Of Our Exclusive Collection, You May Like
+                                Slična ponuda specijalno kreirana prema vašim
+                                preferencijama
                             </p>
                         </div>
 
@@ -119,13 +120,18 @@ class Predlozeno extends Component {
                 <Fragment>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            <h2>YOU MAY ALSO LIKE </h2>
+                            <h2> Takođe možete pogledati: </h2>
                             <p>
-                                Some Of Our Exclusive Collection, You May Like
+                                Slična ponuda specijalno kreirana prema vašim
+                                preferencijama
                             </p>
                         </div>
 
-                        <p>There have no similar product </p>
+                        <p>
+                            {" "}
+                            Nema sličnih stavki koje odgovaraju vašim
+                            preferencijama!{" "}
+                        </p>
                     </Container>
                 </Fragment>
             );

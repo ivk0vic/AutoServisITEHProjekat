@@ -87,7 +87,7 @@ import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { Rectangle } from "@react-google-maps/api";
 
 const containerStyle = {
-    width: "450px",
+    width: "850px",
     height: "450px",
 };
 

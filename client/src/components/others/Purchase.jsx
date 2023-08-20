@@ -115,7 +115,7 @@ export class Purchase extends Component {
 
                             <div className={this.state.mainDiv}>
                                 <h4 className="section-title-login">
-                                    Purchase Page{" "}
+                                    Rezervacija{" "}
                                 </h4>
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.purchase)}

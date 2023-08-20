@@ -93,7 +93,7 @@ class Privacy extends Component {
 
                             <div className={this.state.mainDiv}>
                                 <h4 className="section-title-login">
-                                    Privacy Page
+                                    Privatnost Podataka
                                 </h4>
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.privacy)}

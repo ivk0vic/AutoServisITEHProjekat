@@ -17,11 +17,15 @@ class Profile extends Component {
 
         return (
             <Fragment>
-                <h1> User Profile Page </h1>
+                <h1 className="text-center"> Profilna strana </h1>
 
                 <ul className="list-group">
-                    <li className="list-group-item">Name : {name} </li>
-                    <li className="list-group-item">Email : {email} </li>
+                    <li className="list-group-item">
+                        Dobrodošli na sajt Auto Servisa. Vaše ime je {name} !
+                    </li>
+                    <li className="list-group-item">
+                        Vaša Email adresa je {email}.{" "}
+                    </li>
                 </ul>
             </Fragment>
         );

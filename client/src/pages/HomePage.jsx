@@ -11,6 +11,7 @@ import NavMenuMobile from "../components/common/NavMenuMobile";
 import FooterDesktop from "../components/common/FooterDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import axios from "axios";
+import Dno from "../components/home/Dno";
 
 export class HomePage extends Component {
     //go to the top of the page
@@ -44,6 +45,8 @@ export class HomePage extends Component {
 
                     <Kolekcija />
                     <Kategorije />
+
+                    <Dno />
 
                     <div className="Desktop">
                         <FooterDesktop />

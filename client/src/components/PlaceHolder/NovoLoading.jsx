@@ -9,8 +9,8 @@ class NovoLoading extends Component {
             <div className={isLoading}>
                 <Container className="text-center" fluid={true}>
                     <div className="section-title text-center mb-55">
-                        <h2>NEW ARRIVAL &nbsp;</h2>
-                        <p>Some Of Our Exclusive Collection, You May Like</p>
+                        <h2>Akumulatori</h2>
+                        <p>Najnovija ponuda akumulatora za vaš automobil!</p>
                     </div>
 
                     <div className="row">

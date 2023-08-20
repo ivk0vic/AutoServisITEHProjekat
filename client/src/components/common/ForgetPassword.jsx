@@ -67,7 +67,7 @@ class ForgetPassword extends Component {
                                     >
                                         <h4 className="section-title-login">
                                             {" "}
-                                            FORGET PASSWORD ?{" "}
+                                            Zaboravljena šifra{" "}
                                         </h4>
 
                                         <input
@@ -86,7 +86,7 @@ class ForgetPassword extends Component {
                                             className="btn btn-block m-2 site-btn-login"
                                         >
                                             {" "}
-                                            Reset Password{" "}
+                                            Resetuj šifru!{" "}
                                         </Button>
                                     </Form>
                                 </Col>

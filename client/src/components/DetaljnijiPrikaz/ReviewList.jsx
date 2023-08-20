@@ -113,7 +113,7 @@ class ReviewList extends Component {
 
             return (
                 <div>
-                    <h6 className="mt-2">REVIEWS</h6>
+                    <h6 className="mt-2">Recenzije</h6>
 
                     {MyView}
                 </div>
@@ -121,9 +121,9 @@ class ReviewList extends Component {
         } else {
             return (
                 <div>
-                    <h6 className="mt-2">REVIEWS</h6>
+                    <h6 className="mt-2">Recenzije</h6>
 
-                    <p>There have no review Yet </p>
+                    <p> Nema recenzija za sada! </p>
                 </div>
             );
         }

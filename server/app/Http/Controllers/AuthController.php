@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\HasApiTokens;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use DB;

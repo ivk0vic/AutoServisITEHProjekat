@@ -68,10 +68,8 @@ class Kategorije extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            <h2> CATEGORIES</h2>
-                            <p>
-                                Some Of Our Exclusive Collection, You May Like
-                            </p>
+                            <h2> Kategorije - servis i delovi</h2>
+                            <p>Odaberi šta ti je potrebno!</p>
                         </div>
 
                         <Row>{MyView}</Row>

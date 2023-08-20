@@ -73,12 +73,12 @@ class Register extends Component {
                                     >
                                         <h4 className="section-title-login">
                                             {" "}
-                                            USER REGISTER{" "}
+                                            Registracija korisnika{" "}
                                         </h4>
                                         <input
                                             className="form-control m-2"
                                             type="text"
-                                            placeholder="Enter Your Name"
+                                            placeholder="Unesi ime i prezime"
                                             onChange={(e) => {
                                                 this.setState({
                                                     name: e.target.value,
@@ -88,7 +88,7 @@ class Register extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="email"
-                                            placeholder="Enter Your Email"
+                                            placeholder="Unesi svoj mejl"
                                             onChange={(e) => {
                                                 this.setState({
                                                     email: e.target.value,
@@ -98,7 +98,7 @@ class Register extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="password"
-                                            placeholder="Enter Your Password"
+                                            placeholder="Unesi šifru"
                                             onChange={(e) => {
                                                 this.setState({
                                                     password: e.target.value,
@@ -108,7 +108,7 @@ class Register extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="password"
-                                            placeholder="Confirm Your Password"
+                                            placeholder="Potvrdi šifru"
                                             onChange={(e) => {
                                                 this.setState({
                                                     password_confirmation:
@@ -121,22 +121,22 @@ class Register extends Component {
                                             className="btn btn-block m-2 site-btn-login"
                                         >
                                             {" "}
-                                            Sing Up{" "}
+                                            Kreiraj nalog!{" "}
                                         </Button>
                                         <br></br> <br></br>
                                         <hr />
                                         <p>
                                             {" "}
-                                            <b> Forget My Password? </b>
+                                            <b> Zaboravljena šifra? </b>
                                             <Link to="/forget">
-                                                <b> Forget Password </b>{" "}
+                                                <b> Klikni ovde :) </b>{" "}
                                             </Link>{" "}
                                         </p>
                                         <p>
                                             {" "}
-                                            <b> Already Have An Account ? </b>
+                                            <b> Imaš već kreiran nalog? </b>
                                             <Link to="/login">
-                                                <b> Login </b>{" "}
+                                                <b> Prijavi se ovde </b>{" "}
                                             </Link>{" "}
                                         </p>
                                     </Form>

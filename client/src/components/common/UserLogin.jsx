@@ -71,12 +71,12 @@ class UserLogin extends Component {
                                     >
                                         <h4 className="section-title-login">
                                             {" "}
-                                            USER SING IN{" "}
+                                            Prijavljivanje korisnika{" "}
                                         </h4>
                                         <input
                                             className="form-control m-2"
                                             type="email"
-                                            placeholder="Enter Your Email"
+                                            placeholder="Unesi svoj mejl..."
                                             onChange={(e) => {
                                                 this.setState({
                                                     email: e.target.value,
@@ -86,7 +86,7 @@ class UserLogin extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="password"
-                                            placeholder="Enter Your Password"
+                                            placeholder="Unesi svoju šifru..."
                                             onChange={(e) => {
                                                 this.setState({
                                                     password: e.target.value,
@@ -98,22 +98,22 @@ class UserLogin extends Component {
                                             className="btn btn-block m-2 site-btn-login"
                                         >
                                             {" "}
-                                            Login{" "}
+                                            Prijavi se{" "}
                                         </Button>
                                         <br></br> <br></br>
                                         <hr />
                                         <p>
                                             {" "}
-                                            <b> Forget My Password? </b>
+                                            <b> Zaboravljena šifra? </b>
                                             <Link to="/forget">
-                                                <b> Forget Password </b>{" "}
+                                                <b> Klikni ovde :)</b>{" "}
                                             </Link>{" "}
                                         </p>
                                         <p>
                                             {" "}
-                                            <b> Don't Have An Account ? </b>
+                                            <b> Nemaš nalog? </b>
                                             <Link to="/register">
-                                                <b> Register </b>{" "}
+                                                <b> Registruj se sada! </b>{" "}
                                             </Link>{" "}
                                         </p>
                                     </Form>

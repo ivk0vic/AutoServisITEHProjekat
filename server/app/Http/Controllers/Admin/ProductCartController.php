@@ -14,6 +14,7 @@ class ProductCartController extends Controller
     public function addToCart(Request $request)
     {
         $email = $request->input('email');
+        $datum = $request->input('datum');
         $product_code = $request->input('product_code');
 
         $productDetails = ProductList::where('product_code', $product_code)->get();
@@ -31,10 +32,10 @@ class ProductCartController extends Controller
 
             'email' => $email,
             'image' => $productDetails[0]['image'],
+            'datum' => $datum,
             'product_name' => $productDetails[0]['title'],
             'product_code' => $productDetails[0]['product_code'],
             'unit_price' => $unit_price,
-
 
         ]);
 
@@ -83,7 +84,7 @@ class ProductCartController extends Controller
         $invoice_no = $request->input('invoice_no');
         $DeliveryCharge = $request->input('delivery_charge');
 
-        date_default_timezone_set("Asia/Dhaka");
+        date_default_timezone_set("Europe/Belgrade");
         $request_time = date("h:i:sa");
         $request_date = date("d-m-Y");
 
@@ -93,10 +94,11 @@ class ProductCartController extends Controller
             $cartInsertDeleteResult = "";
 
             $resultInsert = CartOrder::insert([
-                'invoice_no' => "Easy" . $invoice_no,
+                'invoice_no' => "ITEH-PROJEKAT-" . $invoice_no,
                 'product_name' => $CartListItem['product_name'],
                 'product_code' => $CartListItem['product_code'],
                 'unit_price' => $CartListItem['unit_price'],
+                'datum' => $CartListItem['datum'],
                 'email' => $CartListItem['email'],
                 'name' => $yourName,
                 'payment_method' => $paymentMethod,
@@ -105,7 +107,7 @@ class ProductCartController extends Controller
                 'delivery_charge' => $DeliveryCharge,
                 'order_date' => $request_date,
                 'order_time' => $request_time,
-                'order_status' => "Pending",
+                'order_status' => "Na čekanju! Uskoro će zahtev biti procesiran unutar Auto Servisa!",
             ]);
 
             if ($resultInsert == 1) {

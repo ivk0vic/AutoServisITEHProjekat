@@ -93,11 +93,8 @@ class Kolekcija extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="text-center" fluid={true}>
                         <div className="section-title text-center mb-55">
-                            <h2> Specijalna kolekcija </h2>
-                            <p>
-                                {" "}
-                                Dugotrajni i troškovno isplativi akumulatori{" "}
-                            </p>
+                            <h2> Specijalna ponuda </h2>
+                            <p> Dijagnostika nikada nije bila povoljnija! </p>
                         </div>
 
                         <Row>{MyView}</Row>

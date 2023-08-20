@@ -92,7 +92,7 @@ class Refund extends Component {
 
                             <div className={this.state.mainDiv}>
                                 <h4 className="section-title-login">
-                                    Refund Page{" "}
+                                    Povrat novca{" "}
                                 </h4>
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.refund)}

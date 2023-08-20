@@ -2,11 +2,12 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 
 import HomeSlajd from "./HomeSlajd";
+import Meni from "./Meni";
 import AppURL from "../../api/AppURL";
 import axios from "axios";
 import SliderLoading from "../PlaceHolder/SliderLoading";
 
-class Vrh extends Component {
+class Dno extends Component {
     constructor() {
         super();
         this.state = {
@@ -43,14 +44,13 @@ class Vrh extends Component {
                 <div className={this.state.mainDiv}>
                     <Container className="p-0 m-0 overflow-hidden" fluid={true}>
                         <Row>
-                            <div className="section-title text-center">
-                                <h2>Dobrodošli u Auto Servis</h2>
-                                <p>
-                                    Projekat razvijen uz pomoć React i Laravel
-                                    framework-a.
-                                </p>
-                            </div>
-                            <HomeSlajd data={this.state.SliderData} />
+                            <Col lg={3} md={3} sm={12}>
+                                <Meni data={this.state.MenuData} />
+                            </Col>
+
+                            <Col lg={9} md={9} sm={12}>
+                                <HomeSlajd data={this.state.SliderData} />
+                            </Col>
                         </Row>
                     </Container>
                 </div>
@@ -59,4 +59,4 @@ class Vrh extends Component {
     }
 }
 
-export default Vrh;
+export default Dno;

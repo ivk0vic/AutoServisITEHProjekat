@@ -92,9 +92,8 @@ class About extends Component {
                             </div>
 
                             <div className={this.state.mainDiv}>
-                                <h4 className="section-title-login">
-                                    About Us Page{" "}
-                                </h4>
+                                <h4 className="section-title-login">O nama </h4>
+
                                 <p className="section-title-contact">
                                     {ReactHtmlParser(this.state.about)}
                                 </p>

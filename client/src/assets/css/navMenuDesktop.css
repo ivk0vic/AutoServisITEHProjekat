@@ -1,14 +1,15 @@
 .nav-logo {
-    width: 180px;
-    height: 40px;
+    padding-left: 20px;
+    width: 230px;
+    height: 55px;
 }
 
 .cart-btn {
     padding: 5px 15px 5px 15px;
     color: #ffffff;
     border-radius: 20px !important;
-    border: 0.5px solid #051b35;
-    background: #051b35 !important;
+    border: 2px solid #000000;
+    background: rgb(218, 45, 45) !important;
     text-decoration: none;
 }
 

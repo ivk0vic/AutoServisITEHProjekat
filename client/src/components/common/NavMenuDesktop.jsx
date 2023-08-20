@@ -88,10 +88,10 @@ class NavMenuDesktop extends Component {
                     </Link>
 
                     <Link to="/profile" className="h4 btn">
-                        PROFILE
+                        PROFIL
                     </Link>
                     <Link to="/" onClick={this.logout} className="h4 btn">
-                        LOGOUT
+                        ODJAVI SE
                     </Link>
 
                     <Link to="/cart" className="cart-btn">
@@ -112,14 +112,14 @@ class NavMenuDesktop extends Component {
                     </Link>
 
                     <Link to="/login" className="h4 btn">
-                        LOGIN
+                        PRIJAVA
                     </Link>
                     <Link to="/register" className="h4 btn">
-                        REGISTER
+                        REGISTRACIJA
                     </Link>
 
                     <Link to="/cart" className="cart-btn">
-                        <i className="fa fa-shopping-cart"></i> 0 items{" "}
+                        <i className="fa fa-shopping-cart"></i> 0 stavki{" "}
                     </Link>
                 </div>
             );

@@ -74,13 +74,13 @@ export class ResetPassword extends Component {
                                     >
                                         <h4 className="section-title-login">
                                             {" "}
-                                            RESET PASSWORD{" "}
+                                            RESETUJ SVOJU ŠIFRU{" "}
                                         </h4>
 
                                         <input
                                             className="form-control m-2"
                                             type="text"
-                                            placeholder="Enter Your Pin Code"
+                                            placeholder="Unesi PIN kod"
                                             onChange={(e) => {
                                                 this.setState({
                                                     token: e.target.value,
@@ -91,7 +91,7 @@ export class ResetPassword extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="email"
-                                            placeholder="Enter Your Email"
+                                            placeholder="Unesi svoj mejl"
                                             onChange={(e) => {
                                                 this.setState({
                                                     email: e.target.value,
@@ -102,7 +102,7 @@ export class ResetPassword extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="password"
-                                            placeholder="Your New Password"
+                                            placeholder="Unesi novu šifru..."
                                             onChange={(e) => {
                                                 this.setState({
                                                     password: e.target.value,
@@ -113,7 +113,7 @@ export class ResetPassword extends Component {
                                         <input
                                             className="form-control m-2"
                                             type="password"
-                                            placeholder="Confirm Your Password"
+                                            placeholder="Potvrdi novu šifru..."
                                             onChange={(e) => {
                                                 this.setState({
                                                     password_confirmation:
@@ -127,7 +127,7 @@ export class ResetPassword extends Component {
                                             className="btn btn-block m-2 site-btn-login"
                                         >
                                             {" "}
-                                            Reset Password{" "}
+                                            RESETUJ{" "}
                                         </Button>
                                     </Form>
                                 </Col>
