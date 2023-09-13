@@ -78,6 +78,27 @@ class NavMenuDesktop extends Component {
     render() {
         let buttons;
         if (localStorage.getItem("token")) {
+            if(localStorage.getItem("email") == "admin@gmail.com") {
+                buttons = (
+                    <div>
+                        
+    
+                        
+    
+                        <Link to="/admin" className="h4 btn">
+                            ADMIN
+                        </Link>
+                        <Link to="/" onClick={this.logout} className="h4 btn">
+                        ODJAVI SE
+                    </Link>
+    
+                        <Link to="/cart" className="cart-btn">
+                            <i className="fa fa-shopping-cart"></i> 0 stavki{" "}
+                        </Link>
+                    </div>
+                );
+            }
+            else{
             buttons = (
                 <div>
                     <Link to="/favourite" className="btn">
@@ -86,6 +107,11 @@ class NavMenuDesktop extends Component {
                             <span className="badge text-white bg-danger"></span>
                         </sup>
                     </Link>
+                    
+
+                    <Link to="/notification" className="btn">
+                            <i className="fa h4 fa-bell"></i>
+                        </Link>
 
                     <Link to="/profile" className="h4 btn">
                         PROFIL
@@ -100,7 +126,10 @@ class NavMenuDesktop extends Component {
                     </Link>
                 </div>
             );
-        } else {
+            }
+        } 
+
+        else{
             buttons = (
                 <div>
                     <Link to="/favourite" className="btn">

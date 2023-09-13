@@ -57,6 +57,7 @@ Route::get('/reviewlist/{id}', [ReviewController::class, 'ReviewList']);
 Route::post('/addtocart', [ProductCartController::class, 'addToCart']);
 
 Route::get('/orderlistbyuser/{email}', [ProductCartController::class, 'OrderListByUser']);
+Route::get('/orderlistall', [ProductCartController::class, 'OrderListAll']);
 
 Route::get('/favourite/{product_code}/{email}', [FavouriteController::class, 'AddFavourite']);
 Route::get('/favouritelist/{email}', [FavouriteController::class, 'FavouriteList']);
@@ -64,6 +65,7 @@ Route::get('/favouriteremove/{product_code}/{email}', [FavouriteController::clas
 
 //Cart
 Route::get('/cartlist/{email}', [ProductCartController::class, 'CartList']);
+Route::get('/cartlist', [ProductCartController::class, 'CartListAll']);
 Route::get('/removefromcart/{id}', [ProductCartController::class, 'RemoveCartList']);
 
 Route::get('/cartcount/{email}', [ProductCartController::class, 'CartCount']);

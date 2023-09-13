@@ -61,6 +61,10 @@ class AppURL {
         return this.BaseURL + "/orderlistbyuser/" + email;
     }
 
+    static OrderListAll() {
+        return this.BaseURL + "/orderlistall/";
+    }
+
     static AddFavourite(product_code, email) {
         return this.BaseURL + "/favourite/" + product_code + "/" + email;
     }

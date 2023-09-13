@@ -22,6 +22,7 @@ import UserLoginPage from '../pages/UserLoginPage';
 import axios from 'axios' 
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
 import OrderListPage from '../pages/OrderListPage';
+import Admin from '../components/common/Admin';
 
 class AppRoute extends Component {
 
@@ -91,6 +92,9 @@ class AppRoute extends Component {
   <Route exact path="/productbysearch/:searchkey" render={(props) => <SearchPage {...props} key={Date.now()} /> } /> 
                   
   <Route exact path="/orderlist" render={(props) => <OrderListPage user={this.state.user} {...props} key={Date.now()} /> } />
+
+  <Route exact path="/admin" render={(props) => <Admin user={this.state.user} {...props} key={Date.now()} /> } />
+
           </Switch>
 
      </Fragment>

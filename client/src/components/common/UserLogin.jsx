@@ -39,7 +39,12 @@ class UserLogin extends Component {
     render() {
         /// After Login Redirect to Profile Page
         if (this.state.loggedIn) {
-            return <Redirect to={"/profile"} />;
+            if(localStorage.getItem("email") == "admin@gmail.com"){
+                return <Redirect to={"/admin"} />;
+            }
+            else{
+                return <Redirect to={"/profile"} />;
+            }
         }
 
         if (localStorage.getItem("token")) {

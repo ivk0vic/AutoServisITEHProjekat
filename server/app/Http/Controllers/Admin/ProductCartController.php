@@ -57,6 +57,12 @@ class ProductCartController extends Controller
         $result = CartOrder::where('email', $email)->orderBy('id', 'DESC')->get();
         return $result;
     } // End Method 
+
+    public function OrderListAll(Request $request)
+    {
+        $result = CartOrder::all();
+        return $result;
+    } // End Method 
     public function CartList(Request $request)
     {
 
