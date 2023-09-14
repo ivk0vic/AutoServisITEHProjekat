@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 20, 2023 at 03:21 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Sep 14, 2023 at 06:26 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,7 +54,8 @@ CREATE TABLE `cart_orders` (
 INSERT INTO `cart_orders` (`id`, `invoice_no`, `product_name`, `product_code`, `datum`, `unit_price`, `email`, `name`, `payment_method`, `delivery_address`, `city`, `delivery_charge`, `order_date`, `order_time`, `order_status`, `created_at`, `updated_at`) VALUES
 (3, 'ITEH-PROJEKAT-1692471663411', 'Veliki Servis Fiat automobila', '49498', '30. Septembar 2023.', '800', 'milica@gmail.com', 'Milica', 'Gotovina', 'Miličina Adresa', 'Beograd', '00', '19-08-2023', '09:01:03pm', 'Na čekanju! Uskoro će zahtev biti procesiran unutar Auto Servisa!', NULL, NULL),
 (4, 'ITEH-PROJEKAT-1692529883865', 'Veliki Servis Renault automobila', '49689469', '29. Avgust 2023.', '14000', 'aleksandar@gmail.com', 'Aleksandar', 'Gotovina', 'Adresa', 'Beograd', '00', '20-08-2023', '01:11:24pm', 'Na čekanju! Uskoro će zahtev biti procesiran unutar Auto Servisa!', NULL, NULL),
-(5, 'ITEH-PROJEKAT-1692531307735', 'Veliki Servis Fiat automobila', '49498', '21. Avgust 2023.', '8000', 'aleksandar2@gmail.com', 'Aleksandar', 'Gotovina', 'Adresa', 'Beograd', '00', '20-08-2023', '01:35:08pm', 'Na čekanju! Uskoro će zahtev biti procesiran unutar Auto Servisa!', NULL, NULL);
+(5, 'ITEH-PROJEKAT-1692531307735', 'Veliki Servis Fiat automobila', '49498', '21. Avgust 2023.', '8000', 'aleksandar2@gmail.com', 'Aleksandar', 'Gotovina', 'Adresa', 'Beograd', '00', '20-08-2023', '01:35:08pm', 'Na čekanju! Uskoro će zahtev biti procesiran unutar Auto Servisa!', NULL, NULL),
+(6, 'ITEH-PROJEKAT-1694642531823', 'Veliki Servis Fiat automobila', '49498', '29. Avgust 2023.', '8000', 'milica@gmail.com', 'Milica', 'Kartica', 'Milica', 'Beograd', '00', '14-09-2023', '12:02:12am', 'Na čekanju! Uskoro će zahtev biti procesiran unutar Auto Servisa!', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -240,39 +241,8 @@ INSERT INTO `notifications` (`id`, `title`, `message`, `date`, `created_at`, `up
 --
 -- Table structure for table `oauth_access_tokens`
 --
-
-CREATE TABLE `oauth_access_tokens` (
-  `id` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `client_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `scopes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `revoked` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `expires_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `oauth_access_tokens`
---
-
-INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes`, `revoked`, `created_at`, `updated_at`, `expires_at`) VALUES
-('174cbe201c6dd652a267165b8b385a2fcd99c6c215fb4dd81de1aad9d053c6b29b1f171d4cbda8d1', 13, 1, 'app', '[]', 0, '2023-08-20 09:33:08', '2023-08-20 09:33:08', '2024-08-20 11:33:08'),
-('1b7df68e5c4b758de00012c3aed71cebe20c4647a1ce8397594c4c0eb74e3f48b435abf7fc26941e', 13, 1, 'app', '[]', 0, '2023-08-20 09:45:55', '2023-08-20 09:45:55', '2024-08-20 11:45:55'),
-('2baef7b2518221471d8602f6a389496101d1b4e488b51a15c60385cc3137e6d75b3951f824a01880', 13, 1, 'app', '[]', 0, '2023-08-20 09:25:37', '2023-08-20 09:25:37', '2024-08-20 11:25:37'),
-('3628076031d2bbc6168fb992d3d091969a2411212c4bac24d9d76928c2c37ab4bdf76ae7fbefb730', 13, 1, 'app', '[]', 0, '2023-08-20 09:24:38', '2023-08-20 09:24:38', '2024-08-20 11:24:38'),
-('3afe6af8569d5fa51ced16c00d1d7e78af9f2da8ac458bed589640c521802236cba95a087864f505', 12, 1, 'app', '[]', 0, '2023-08-20 06:55:21', '2023-08-20 06:55:21', '2024-08-20 08:55:21'),
-('54a190403fcca394d9d3b2c8c143f8919dc773659b3c9f8c0c9013dcc99a826c13dcfdd67e50ef1b', 11, 1, 'app', '[]', 0, '2023-08-19 16:33:43', '2023-08-19 16:33:43', '2024-08-19 18:33:43'),
-('5fe778f6ccb0a6308f046433e0ef35883b8a56e27742f9756ebb3edd051dd4e45f53bd201b51232b', 12, 1, 'app', '[]', 0, '2023-08-20 08:02:28', '2023-08-20 08:02:28', '2024-08-20 10:02:28'),
-('776fc15026a2bc4f25f567756bf44e55c079ff8d383c2a5f9b37ce077a043defbb3842a224be0c74', 13, 1, 'app', '[]', 0, '2023-08-20 09:41:30', '2023-08-20 09:41:30', '2024-08-20 11:41:30'),
-('7cb68e05d7870410b078617cdbc6f35ca5a403ccbde58b7e2c35c5e52535a379db275ad9ff3555b4', 13, 1, 'app', '[]', 0, '2023-08-20 09:41:24', '2023-08-20 09:41:24', '2024-08-20 11:41:24'),
-('8b2e60415a02c6abf21ec1bceabd0ebe6d34a037bdc4111a3e3ca5b9cfd83ed4803052f54aac593b', 11, 1, 'app', '[]', 0, '2023-08-19 16:03:41', '2023-08-19 16:03:41', '2024-08-19 18:03:41'),
-('968c320a8840f160ddbe6e895efe6d23f97d3531c522440a7f18b0ee52179f0d71bb3b481385e873', 13, 1, 'app', '[]', 0, '2023-08-20 09:20:13', '2023-08-20 09:20:13', '2024-08-20 11:20:13'),
-('972d587ad6f4ba196b24a31ec348a0f53b8610a07d864ef7110397a99bcfa9d0d317f60cf8edfe03', 13, 1, 'app', '[]', 0, '2023-08-20 09:14:21', '2023-08-20 09:14:21', '2024-08-20 11:14:21'),
-('9d4a9b66fa10c73c54d7008637dd00817a1c399477bd4cc821b720249a7d12681f089fdd131ce837', 12, 1, 'app', '[]', 0, '2023-08-19 18:19:21', '2023-08-19 18:19:21', '2024-08-19 20:19:21'),
-('bd38e39683892160b4b4d75e359bf3d533a78d230e0fdc73d627a4497f0506049d202548a019814e', 13, 1, 'app', '[]', 0, '2023-08-20 09:41:22', '2023-08-20 09:41:22', '2024-08-20 11:41:22'),
-('eb6394fda9f388cb82dd2c46ec170916ed3586b4f1cc6559dc3ec98a4bb009766212ff82075e78cc', 12, 1, 'app', '[]', 0, '2023-08-20 09:13:13', '2023-08-20 09:13:13', '2024-08-20 11:13:13');
+-- Error reading structure for table server.oauth_access_tokens: #1030 - Got error 194 &quot;Tablespace is missing for a table&quot; from storage engine InnoDB
+-- Error reading data for table server.oauth_access_tokens: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `server`.`oauth_access_tokens`' at line 1
 
 -- --------------------------------------------------------
 
@@ -557,13 +527,16 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 ('0e5Pj3MZX0JolwnEZg6a8weL6FoxxH4sbBUAMe3a', NULL, '127.0.0.1', 'PostmanRuntime/7.32.3', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZjBiYmRIR3pZZ1Zva0FzVGdnbHBzWEZ1bFMzYTF6RWFOOUUyalQ1MiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1692457357),
 ('C5J0esdnsVNImehZuXlzs4p26h1dN6OL4RXtXazQ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVzJWMXdpNXBlNXYwYXM5MTA0aW0zN1llTU5nY0FMV0lLMndRWlNGYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1691727905),
 ('DBWrxDjwxSFWo6fwwJgFxvEhfj4gWPGXa76MgMg5', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSWJQaElSOERsS2YwMkFnbW8wOTdqWk5zQktMTVJhelJxeU9pUWZTayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692457949),
+('ITQsL6fQupvSaMmn9aH1uOSMfAMluCEkiuTzjsyK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTk9DRFh3a0laUUIxYW5zMXY2cGg1MmxSU3JuMmY3aUtpZFJuU2dPaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1694638712),
 ('KWmBO0cKT8tVGxHTLCTOZk031yJQhyFiABz8bPhR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieTVReVdnS09pVTFES1I1SHpVTmNaRE9DMjlkcllwdjYxUHBuRjB4WCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692459503),
+('mjqcNkRk4KUACI0rFbyWLwEAS1NOLbd9piSNT3XL', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZVp6ZlVLeWZWb2pBOE1DN1dTVGx4bVpOa2pwa3pISTdZSXJQSVE3YiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1694638914),
 ('MS6JaWhxFxvuDuBvPsMQqjBj5y9xxdRFp1ds8Old', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSDdmOFpWZzRtSDhpaUsxbU00RG9aU29VZUhCMzBWU1NtdmVZR21CeiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692457089),
 ('NiLnFegbIdky3OPWbpuAAtxJTe5qdoxm5calOlRh', NULL, '127.0.0.1', 'PostmanRuntime/7.32.3', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiMUJrRGVrOWNzZ21qem53R0N2UlRZeXNaTFdGdDBLOUt0OGtIU1BMYiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1692457744),
 ('ScCjWAREZaNrUfkKbtladx1fHxjgPgXwJZx9WKmh', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidHM2ZUJlY0w1MkZ2OHhsMjVmaGdDWnR1a0JZeE5abWZXR1AzQkhoaiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692528361),
 ('uzjDdKTPug2DjZV6KFp9ryzifzexdKsNdgpB61Cn', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY3pvWFFFeURQSUx4YmRsT0dUa3BEaExzNFBPWDgxdEY1dnZ3bjNVSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692457074),
 ('v6E3iflfgNeoW7JpLWCcNp85c451Y0hVNW1rP5G3', NULL, '127.0.0.1', 'PostmanRuntime/7.32.3', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ0k4cExUNm5tZUdSM2pVcktVVTd3VkhPYjUyRFV3aTUxeDg3NzBPOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692530754),
 ('wbGeOT0JYVmoSV0lZlmQwr1pQaf5lWkXW708kXJE', NULL, '127.0.0.1', 'PostmanRuntime/7.32.3', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiZ1NWQThZSHZPdHpUcUJldHZ4N3RWVGFlRnhrR3ZuQXNTaVhBOERMVyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1692458605),
+('wqUdEtY6snT9evaICRb8hf2GfR3FdCz3EuZU7Abf', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWWEzZUVVaklnT2N6NEt1VUZDTDNTMmp6NHpUZU1kWVdzOTJoUTJSbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1694303450),
 ('yMXs12badCHHA3jai4AKxJ78wMTzTciC06Dyf5Wh', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ05jdWVCSHA5ZGF5anFETVBFbDZjZ3Q1aGlNNTJ3T0dTVXVtT3dQYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1692457752);
 
 -- --------------------------------------------------------
@@ -658,244 +631,17 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`) VALUES
 (11, 'Milica', 'milica@gmail.com', NULL, '$2y$10$InvjCOYqJfRWFLnC35ftnuFkh7pONsMd5Twkthp7ykV549vwPKUsa', NULL, NULL, NULL, NULL, '2023-08-19 13:23:59', '2023-08-19 13:23:59'),
 (12, 'Aleksandar', 'aleksandar@gmail.com', NULL, '$2y$10$hhu/8xJFh3dsJ8KDi5/zzOqtXxd6CJC69FNkOWiB71H6z7sNBj.1i', NULL, NULL, NULL, NULL, '2023-08-19 18:19:21', '2023-08-19 18:19:21'),
-(13, 'Aleksandar2', 'aleksandar2@gmail.com', NULL, '$2y$10$3KaTfMtWnU2WbXLxTgdInOR7GUKuHaBTH50J5d7eLLKCUDUajdRFu', NULL, NULL, NULL, NULL, '2023-08-20 09:14:21', '2023-08-20 09:14:21');
+(13, 'Aleksandar2', 'aleksandar2@gmail.com', NULL, '$2y$10$3KaTfMtWnU2WbXLxTgdInOR7GUKuHaBTH50J5d7eLLKCUDUajdRFu', NULL, NULL, NULL, NULL, '2023-08-20 09:14:21', '2023-08-20 09:14:21'),
+(14, 'Milica', 'milica111@gmail.com', NULL, '$2y$10$5bO7783KUkrluUdqP1C0h.a5LCGMnf.rKF/Phl.m5hkjUTp92h4Ne', NULL, NULL, NULL, NULL, '2023-09-13 18:57:55', '2023-09-13 18:57:55'),
+(18, 'Admin', 'admin@gmail.com', NULL, '$2y$10$EEFujXakFMmmYJQ8OFQrEO/052NnL6ZJsSNyXKwyfgHJ2Ss9wHu3S', NULL, NULL, NULL, NULL, '2023-09-13 19:32:12', '2023-09-13 19:32:12');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `visitors`
 --
-
-CREATE TABLE `visitors` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `ip_adress` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `visit_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `visit_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `visitors`
---
-
-INSERT INTO `visitors` (`id`, `ip_adress`, `visit_time`, `visit_date`, `created_at`, `updated_at`) VALUES
-(1, '127.0.0.1', '10:37:39am', '11-08-2023', NULL, NULL),
-(2, '127.0.0.1', '10:37:45am', '11-08-2023', NULL, NULL),
-(3, '127.0.0.1', '10:42:02am', '11-08-2023', NULL, NULL),
-(4, '127.0.0.1', '10:42:07am', '11-08-2023', NULL, NULL),
-(5, '127.0.0.1', '11:12:08am', '11-08-2023', NULL, NULL),
-(6, '127.0.0.1', '11:42:52am', '11-08-2023', NULL, NULL),
-(7, '127.0.0.1', '11:42:56am', '11-08-2023', NULL, NULL),
-(8, '127.0.0.1', '11:43:09am', '11-08-2023', NULL, NULL),
-(9, '127.0.0.1', '11:52:17am', '11-08-2023', NULL, NULL),
-(10, '127.0.0.1', '11:55:53am', '11-08-2023', NULL, NULL),
-(11, '127.0.0.1', '11:56:36am', '11-08-2023', NULL, NULL),
-(12, '127.0.0.1', '11:59:20am', '11-08-2023', NULL, NULL),
-(13, '127.0.0.1', '12:01:49pm', '11-08-2023', NULL, NULL),
-(14, '127.0.0.1', '12:02:58pm', '11-08-2023', NULL, NULL),
-(15, '127.0.0.1', '12:03:51pm', '11-08-2023', NULL, NULL),
-(16, '127.0.0.1', '12:14:57pm', '11-08-2023', NULL, NULL),
-(17, '127.0.0.1', '12:16:44pm', '11-08-2023', NULL, NULL),
-(18, '127.0.0.1', '12:17:50pm', '11-08-2023', NULL, NULL),
-(19, '127.0.0.1', '12:17:56pm', '11-08-2023', NULL, NULL),
-(20, '127.0.0.1', '05:07:48am', '15-08-2023', NULL, NULL),
-(21, '127.0.0.1', '05:57:46am', '15-08-2023', NULL, NULL),
-(22, '127.0.0.1', '05:57:59am', '15-08-2023', NULL, NULL),
-(23, '127.0.0.1', '06:07:28am', '15-08-2023', NULL, NULL),
-(24, '127.0.0.1', '06:07:44am', '15-08-2023', NULL, NULL),
-(25, '127.0.0.1', '06:20:53am', '15-08-2023', NULL, NULL),
-(26, '127.0.0.1', '06:21:55am', '15-08-2023', NULL, NULL),
-(27, '127.0.0.1', '06:22:28am', '15-08-2023', NULL, NULL),
-(28, '127.0.0.1', '06:24:25am', '15-08-2023', NULL, NULL),
-(29, '127.0.0.1', '06:33:10am', '15-08-2023', NULL, NULL),
-(30, '127.0.0.1', '06:33:27am', '15-08-2023', NULL, NULL),
-(31, '127.0.0.1', '06:45:08am', '15-08-2023', NULL, NULL),
-(32, '127.0.0.1', '06:46:21am', '15-08-2023', NULL, NULL),
-(33, '127.0.0.1', '06:46:27am', '15-08-2023', NULL, NULL),
-(34, '127.0.0.1', '06:49:26am', '15-08-2023', NULL, NULL),
-(35, '127.0.0.1', '06:49:46am', '15-08-2023', NULL, NULL),
-(36, '127.0.0.1', '06:49:56am', '15-08-2023', NULL, NULL),
-(37, '127.0.0.1', '06:56:55am', '15-08-2023', NULL, NULL),
-(38, '127.0.0.1', '06:58:59am', '15-08-2023', NULL, NULL),
-(39, '127.0.0.1', '07:00:18am', '15-08-2023', NULL, NULL),
-(40, '127.0.0.1', '07:17:19am', '15-08-2023', NULL, NULL),
-(41, '127.0.0.1', '07:17:26am', '15-08-2023', NULL, NULL),
-(42, '127.0.0.1', '07:18:29am', '15-08-2023', NULL, NULL),
-(43, '127.0.0.1', '07:28:19am', '15-08-2023', NULL, NULL),
-(44, '127.0.0.1', '07:28:46am', '15-08-2023', NULL, NULL),
-(45, '127.0.0.1', '07:33:39am', '15-08-2023', NULL, NULL),
-(46, '127.0.0.1', '07:33:58am', '15-08-2023', NULL, NULL),
-(47, '127.0.0.1', '07:34:15am', '15-08-2023', NULL, NULL),
-(48, '127.0.0.1', '07:36:39am', '15-08-2023', NULL, NULL),
-(49, '127.0.0.1', '07:36:46am', '15-08-2023', NULL, NULL),
-(50, '127.0.0.1', '07:42:36am', '15-08-2023', NULL, NULL),
-(51, '127.0.0.1', '07:42:38am', '15-08-2023', NULL, NULL),
-(52, '127.0.0.1', '07:42:44am', '15-08-2023', NULL, NULL),
-(53, '127.0.0.1', '07:42:59am', '15-08-2023', NULL, NULL),
-(54, '127.0.0.1', '07:43:04am', '15-08-2023', NULL, NULL),
-(55, '127.0.0.1', '01:47:42pm', '16-08-2023', NULL, NULL),
-(56, '127.0.0.1', '01:49:11pm', '16-08-2023', NULL, NULL),
-(57, '127.0.0.1', '02:00:09pm', '16-08-2023', NULL, NULL),
-(58, '127.0.0.1', '02:10:38pm', '16-08-2023', NULL, NULL),
-(59, '127.0.0.1', '02:11:11pm', '16-08-2023', NULL, NULL),
-(60, '127.0.0.1', '02:15:48pm', '16-08-2023', NULL, NULL),
-(61, '127.0.0.1', '02:30:13pm', '16-08-2023', NULL, NULL),
-(62, '127.0.0.1', '02:30:30pm', '16-08-2023', NULL, NULL),
-(63, '127.0.0.1', '02:35:17pm', '16-08-2023', NULL, NULL),
-(64, '127.0.0.1', '02:38:41pm', '16-08-2023', NULL, NULL),
-(65, '127.0.0.1', '02:45:43pm', '16-08-2023', NULL, NULL),
-(66, '127.0.0.1', '02:47:12pm', '16-08-2023', NULL, NULL),
-(67, '127.0.0.1', '02:57:12pm', '16-08-2023', NULL, NULL),
-(68, '127.0.0.1', '02:57:36pm', '16-08-2023', NULL, NULL),
-(69, '127.0.0.1', '03:00:06pm', '16-08-2023', NULL, NULL),
-(70, '127.0.0.1', '04:28:24pm', '16-08-2023', NULL, NULL),
-(71, '127.0.0.1', '01:28:24am', '17-08-2023', NULL, NULL),
-(72, '127.0.0.1', '02:58:48am', '17-08-2023', NULL, NULL),
-(73, '127.0.0.1', '03:16:53am', '17-08-2023', NULL, NULL),
-(74, '127.0.0.1', '08:43:51am', '17-08-2023', NULL, NULL),
-(75, '127.0.0.1', '08:44:17am', '17-08-2023', NULL, NULL),
-(76, '127.0.0.1', '08:45:02am', '17-08-2023', NULL, NULL),
-(77, '127.0.0.1', '08:45:52am', '17-08-2023', NULL, NULL),
-(78, '127.0.0.1', '10:24:29pm', '18-08-2023', NULL, NULL),
-(79, '127.0.0.1', '10:30:23pm', '18-08-2023', NULL, NULL),
-(80, '127.0.0.1', '10:35:23pm', '18-08-2023', NULL, NULL),
-(81, '127.0.0.1', '11:31:54pm', '18-08-2023', NULL, NULL),
-(82, '127.0.0.1', '11:32:49pm', '18-08-2023', NULL, NULL),
-(83, '127.0.0.1', '11:33:53pm', '18-08-2023', NULL, NULL),
-(84, '127.0.0.1', '11:40:06pm', '18-08-2023', NULL, NULL),
-(85, '127.0.0.1', '01:20:54am', '19-08-2023', NULL, NULL),
-(86, '127.0.0.1', '01:22:59am', '19-08-2023', NULL, NULL),
-(87, '127.0.0.1', '01:23:05am', '19-08-2023', NULL, NULL),
-(88, '127.0.0.1', '01:24:16am', '19-08-2023', NULL, NULL),
-(89, '127.0.0.1', '01:24:25am', '19-08-2023', NULL, NULL),
-(90, '127.0.0.1', '11:49:10am', '19-08-2023', NULL, NULL),
-(91, '127.0.0.1', '12:34:54pm', '19-08-2023', NULL, NULL),
-(92, '127.0.0.1', '12:35:12pm', '19-08-2023', NULL, NULL),
-(93, '127.0.0.1', '12:35:43pm', '19-08-2023', NULL, NULL),
-(94, '127.0.0.1', '12:37:01pm', '19-08-2023', NULL, NULL),
-(95, '127.0.0.1', '12:43:22pm', '19-08-2023', NULL, NULL),
-(96, '127.0.0.1', '12:43:33pm', '19-08-2023', NULL, NULL),
-(97, '127.0.0.1', '02:01:01pm', '19-08-2023', NULL, NULL),
-(98, '127.0.0.1', '02:02:19pm', '19-08-2023', NULL, NULL),
-(99, '127.0.0.1', '02:12:32pm', '19-08-2023', NULL, NULL),
-(100, '127.0.0.1', '02:12:59pm', '19-08-2023', NULL, NULL),
-(101, '127.0.0.1', '02:14:02pm', '19-08-2023', NULL, NULL),
-(102, '127.0.0.1', '02:15:12pm', '19-08-2023', NULL, NULL),
-(103, '127.0.0.1', '02:19:22pm', '19-08-2023', NULL, NULL),
-(104, '127.0.0.1', '02:24:19pm', '19-08-2023', NULL, NULL),
-(105, '127.0.0.1', '02:26:15pm', '19-08-2023', NULL, NULL),
-(106, '127.0.0.1', '02:29:30pm', '19-08-2023', NULL, NULL),
-(107, '127.0.0.1', '02:30:09pm', '19-08-2023', NULL, NULL),
-(108, '127.0.0.1', '02:30:39pm', '19-08-2023', NULL, NULL),
-(109, '127.0.0.1', '02:31:23pm', '19-08-2023', NULL, NULL),
-(110, '127.0.0.1', '02:34:23pm', '19-08-2023', NULL, NULL),
-(111, '127.0.0.1', '02:34:35pm', '19-08-2023', NULL, NULL),
-(112, '127.0.0.1', '02:39:13pm', '19-08-2023', NULL, NULL),
-(113, '127.0.0.1', '02:43:24pm', '19-08-2023', NULL, NULL),
-(114, '127.0.0.1', '02:43:42pm', '19-08-2023', NULL, NULL),
-(115, '127.0.0.1', '02:48:00pm', '19-08-2023', NULL, NULL),
-(116, '127.0.0.1', '02:49:01pm', '19-08-2023', NULL, NULL),
-(117, '127.0.0.1', '02:54:11pm', '19-08-2023', NULL, NULL),
-(118, '127.0.0.1', '02:54:55pm', '19-08-2023', NULL, NULL),
-(119, '127.0.0.1', '02:56:26pm', '19-08-2023', NULL, NULL),
-(120, '127.0.0.1', '02:58:10pm', '19-08-2023', NULL, NULL),
-(121, '127.0.0.1', '02:59:56pm', '19-08-2023', NULL, NULL),
-(122, '127.0.0.1', '03:00:54pm', '19-08-2023', NULL, NULL),
-(123, '127.0.0.1', '03:03:34pm', '19-08-2023', NULL, NULL),
-(124, '127.0.0.1', '03:06:04pm', '19-08-2023', NULL, NULL),
-(125, '127.0.0.1', '03:06:19pm', '19-08-2023', NULL, NULL),
-(126, '127.0.0.1', '03:06:39pm', '19-08-2023', NULL, NULL),
-(127, '127.0.0.1', '04:39:04pm', '19-08-2023', NULL, NULL),
-(128, '127.0.0.1', '04:41:35pm', '19-08-2023', NULL, NULL),
-(129, '127.0.0.1', '04:45:14pm', '19-08-2023', NULL, NULL),
-(130, '127.0.0.1', '04:51:20pm', '19-08-2023', NULL, NULL),
-(131, '127.0.0.1', '05:21:51pm', '19-08-2023', NULL, NULL),
-(132, '127.0.0.1', '05:25:01pm', '19-08-2023', NULL, NULL),
-(133, '127.0.0.1', '05:25:46pm', '19-08-2023', NULL, NULL),
-(134, '127.0.0.1', '05:27:37pm', '19-08-2023', NULL, NULL),
-(135, '127.0.0.1', '05:28:59pm', '19-08-2023', NULL, NULL),
-(136, '127.0.0.1', '05:30:47pm', '19-08-2023', NULL, NULL),
-(137, '127.0.0.1', '05:32:14pm', '19-08-2023', NULL, NULL),
-(138, '127.0.0.1', '05:36:45pm', '19-08-2023', NULL, NULL),
-(139, '127.0.0.1', '05:37:17pm', '19-08-2023', NULL, NULL),
-(140, '127.0.0.1', '05:51:21pm', '19-08-2023', NULL, NULL),
-(141, '127.0.0.1', '05:52:21pm', '19-08-2023', NULL, NULL),
-(142, '127.0.0.1', '06:21:32pm', '19-08-2023', NULL, NULL),
-(143, '127.0.0.1', '06:22:10pm', '19-08-2023', NULL, NULL),
-(144, '127.0.0.1', '06:25:42pm', '19-08-2023', NULL, NULL),
-(145, '127.0.0.1', '06:26:00pm', '19-08-2023', NULL, NULL),
-(146, '127.0.0.1', '06:26:20pm', '19-08-2023', NULL, NULL),
-(147, '127.0.0.1', '06:35:41pm', '19-08-2023', NULL, NULL),
-(148, '127.0.0.1', '06:38:05pm', '19-08-2023', NULL, NULL),
-(149, '127.0.0.1', '07:29:23pm', '19-08-2023', NULL, NULL),
-(150, '127.0.0.1', '08:09:01pm', '19-08-2023', NULL, NULL),
-(151, '127.0.0.1', '08:12:03pm', '19-08-2023', NULL, NULL),
-(152, '127.0.0.1', '08:12:42pm', '19-08-2023', NULL, NULL),
-(153, '127.0.0.1', '08:33:52pm', '19-08-2023', NULL, NULL),
-(154, '127.0.0.1', '08:34:50pm', '19-08-2023', NULL, NULL),
-(155, '127.0.0.1', '08:34:52pm', '19-08-2023', NULL, NULL),
-(156, '127.0.0.1', '08:39:06pm', '19-08-2023', NULL, NULL),
-(157, '127.0.0.1', '08:40:28pm', '19-08-2023', NULL, NULL),
-(158, '127.0.0.1', '08:48:55pm', '19-08-2023', NULL, NULL),
-(159, '127.0.0.1', '08:48:58pm', '19-08-2023', NULL, NULL),
-(160, '127.0.0.1', '08:50:11pm', '19-08-2023', NULL, NULL),
-(161, '127.0.0.1', '08:56:31pm', '19-08-2023', NULL, NULL),
-(162, '127.0.0.1', '08:58:33pm', '19-08-2023', NULL, NULL),
-(163, '127.0.0.1', '08:58:46pm', '19-08-2023', NULL, NULL),
-(164, '127.0.0.1', '08:59:00pm', '19-08-2023', NULL, NULL),
-(165, '127.0.0.1', '08:59:32pm', '19-08-2023', NULL, NULL),
-(166, '127.0.0.1', '08:59:39pm', '19-08-2023', NULL, NULL),
-(167, '127.0.0.1', '09:00:17pm', '19-08-2023', NULL, NULL),
-(168, '127.0.0.1', '09:00:23pm', '19-08-2023', NULL, NULL),
-(169, '127.0.0.1', '09:02:32pm', '19-08-2023', NULL, NULL),
-(170, '127.0.0.1', '09:21:36pm', '19-08-2023', NULL, NULL),
-(171, '127.0.0.1', '09:22:59pm', '19-08-2023', NULL, NULL),
-(172, '127.0.0.1', '09:40:14pm', '19-08-2023', NULL, NULL),
-(173, '127.0.0.1', '09:57:51pm', '19-08-2023', NULL, NULL),
-(174, '127.0.0.1', '09:58:20pm', '19-08-2023', NULL, NULL),
-(175, '127.0.0.1', '10:14:43pm', '19-08-2023', NULL, NULL),
-(176, '127.0.0.1', '10:14:59pm', '19-08-2023', NULL, NULL),
-(177, '127.0.0.1', '10:15:05pm', '19-08-2023', NULL, NULL),
-(178, '127.0.0.1', '10:17:23pm', '19-08-2023', NULL, NULL),
-(179, '127.0.0.1', '10:18:20pm', '19-08-2023', NULL, NULL),
-(180, '127.0.0.1', '10:18:34pm', '19-08-2023', NULL, NULL),
-(181, '127.0.0.1', '10:19:34pm', '19-08-2023', NULL, NULL),
-(182, '127.0.0.1', '10:37:51pm', '19-08-2023', NULL, NULL),
-(183, '127.0.0.1', '10:40:00pm', '19-08-2023', NULL, NULL),
-(184, '127.0.0.1', '10:53:36am', '20-08-2023', NULL, NULL),
-(185, '127.0.0.1', '10:54:13am', '20-08-2023', NULL, NULL),
-(186, '127.0.0.1', '10:55:30am', '20-08-2023', NULL, NULL),
-(187, '127.0.0.1', '10:55:47am', '20-08-2023', NULL, NULL),
-(188, '127.0.0.1', '10:59:45am', '20-08-2023', NULL, NULL),
-(189, '127.0.0.1', '11:10:33am', '20-08-2023', NULL, NULL),
-(190, '127.0.0.1', '11:12:31am', '20-08-2023', NULL, NULL),
-(191, '127.0.0.1', '11:12:38am', '20-08-2023', NULL, NULL),
-(192, '127.0.0.1', '11:15:22am', '20-08-2023', NULL, NULL),
-(193, '127.0.0.1', '11:15:36am', '20-08-2023', NULL, NULL),
-(194, '127.0.0.1', '11:16:30am', '20-08-2023', NULL, NULL),
-(195, '127.0.0.1', '11:17:27am', '20-08-2023', NULL, NULL),
-(196, '127.0.0.1', '11:48:37am', '20-08-2023', NULL, NULL),
-(197, '127.0.0.1', '11:51:08am', '20-08-2023', NULL, NULL),
-(198, '127.0.0.1', '11:51:20am', '20-08-2023', NULL, NULL),
-(199, '127.0.0.1', '12:00:36pm', '20-08-2023', NULL, NULL),
-(200, '127.0.0.1', '12:14:22pm', '20-08-2023', NULL, NULL),
-(201, '127.0.0.1', '12:28:13pm', '20-08-2023', NULL, NULL),
-(202, '127.0.0.1', '12:46:02pm', '20-08-2023', NULL, NULL),
-(203, '127.0.0.1', '12:52:03pm', '20-08-2023', NULL, NULL),
-(204, '127.0.0.1', '12:56:44pm', '20-08-2023', NULL, NULL),
-(205, '127.0.0.1', '01:19:51pm', '20-08-2023', NULL, NULL),
-(206, '127.0.0.1', '01:20:29pm', '20-08-2023', NULL, NULL),
-(207, '127.0.0.1', '01:20:31pm', '20-08-2023', NULL, NULL),
-(208, '127.0.0.1', '01:21:23pm', '20-08-2023', NULL, NULL),
-(209, '127.0.0.1', '01:33:17pm', '20-08-2023', NULL, NULL),
-(210, '127.0.0.1', '01:37:29pm', '20-08-2023', NULL, NULL),
-(211, '127.0.0.1', '01:37:43pm', '20-08-2023', NULL, NULL),
-(212, '127.0.0.1', '01:41:19pm', '20-08-2023', NULL, NULL),
-(213, '127.0.0.1', '01:42:08pm', '20-08-2023', NULL, NULL),
-(214, '127.0.0.1', '01:48:27pm', '20-08-2023', NULL, NULL),
-(215, '127.0.0.1', '01:58:56pm', '20-08-2023', NULL, NULL),
-(216, '127.0.0.1', '02:02:52pm', '20-08-2023', NULL, NULL);
+-- Error reading structure for table server.visitors: #1030 - Got error 194 &quot;Tablespace is missing for a table&quot; from storage engine InnoDB
+-- Error reading data for table server.visitors: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `server`.`visitors`' at line 1
 
 --
 -- Indexes for dumped tables
@@ -949,13 +695,6 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `oauth_access_tokens`
---
-ALTER TABLE `oauth_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `oauth_access_tokens_user_id_index` (`user_id`);
 
 --
 -- Indexes for table `oauth_auth_codes`
@@ -1050,12 +789,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `visitors`
---
-ALTER TABLE `visitors`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1063,7 +796,7 @@ ALTER TABLE `visitors`
 -- AUTO_INCREMENT for table `cart_orders`
 --
 ALTER TABLE `cart_orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1129,7 +862,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `product_carts`
 --
 ALTER TABLE `product_carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product_details`
@@ -1165,13 +898,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `visitors`
---
-ALTER TABLE `visitors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
